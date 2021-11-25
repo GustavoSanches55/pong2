@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -11,7 +13,7 @@
     <!--Exibição de perfil do usuário logado-->
     <div class="">
     
-        <img id= "rank-image" src = "img/gold_rank.png" alt="rank image" draggable="false">
+        <img id= "rank-image" src = "{% static 'img/gold_rank.png'%}" alt="rank image" draggable="false">
 
         <div class = "row justify-content-center">
             <div class = "col-12 col-md-5">
