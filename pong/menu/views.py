@@ -8,3 +8,15 @@ def index(request):
 
 def modos(request):
     return render(request,"menu/modos.html")
+
+def leaderboards(request):
+    return render(request,"menu/leaderboard.html")
+
+def login(request):
+    return render(request,"menu/login.html")
+    
+def modos_explicacao(request):
+    return render(request,"menu/modos_explicacao.html")
+
+def profile(request):
+    return render(request,"menu/profile.html")

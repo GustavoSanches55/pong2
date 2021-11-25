@@ -1,30 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <title>P⬤NG</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="icon" href="img/Icon_pag.png">
-</head>
-<body class="container-fluid">
+    
+{% include 'menu/head.html'%}
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
 
-    <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
-    <header>
-        <div class=row id="nav_superior">
-            <div class="col-6"> 
-                <a class="float-start menu-bt red-bt" href="index.html?simulate_logged=y">
-                    <img src="img/arrow_back.svg" class="icon-bt" alt="Botão de Voltar">
-                </a>
-            </div>
-            <div class="col-6">
-                <img class="float-end" id = "corner-logo" src="img/logo_big.png" alt="Logo Pong">
-            </div>
-        </div>
-    </header>
+    <body class="container-fluid">
+        
+    {% include 'menu/nav.html' %}
 
     <!--Exibição de perfil do usuário logado-->
     <div class="">

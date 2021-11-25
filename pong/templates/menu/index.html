@@ -1,14 +1,7 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <title>P⬤NG</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="icon" href="img/Icon_pag.png">
-</head>
+{% include 'menu/head.html'%}
 <body class="body-center">
 
     <!--Junção do logotipo com as colunas em uma única linha-->
@@ -16,15 +9,15 @@
 
         <!--Logo da página principal-->
         <div class="col-12 col-md-5 align-self-center">
-            <img class="img-fluid align-center" src="img/logo_big.png" alt="Logo Pong" draggable="false">
+            <img class="img-fluid align-center" src="{% static 'img/logo_big.png'%}" alt="Logo Pong" draggable="false">
         </div>
 
         <!--Coluna dos botões da página principal-->
         <div class="col-12 col-md-5 menu-item-list align-self-center flex-column">
-            <a class="menu-bt" href = "modos.html"><i class="fas fa-table-tennis"></i> Play Game</a>
-            <a class="menu-bt" href = "leaderboard.html"><i class="fas fa-stream"></i> Leaderboard</a>
-            <a id="profile-menu-btn" class="menu-bt" href = "profile.html"><i class="fas fa-sign-in-alt"></i> Profile</a>
-            <a id="login-menu-btn" class="menu-bt" href = "login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="menu-bt" href = "{% url 'modos' %}"><i class="fas fa-table-tennis"></i> Play Game</a>
+            <a class="menu-bt" href = "{% url 'leaderboards' %}"><i class="fas fa-stream"></i> Leaderboard</a>
+            <a id="profile-menu-btn" class="menu-bt" href = "{% url 'profile' %}"><i class="fas fa-sign-in-alt"></i> Profile</a>
+            <a id="login-menu-btn" class="menu-bt" href = "{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
 
      </div>
 </div>

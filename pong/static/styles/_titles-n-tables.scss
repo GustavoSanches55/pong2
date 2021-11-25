@@ -1,0 +1,55 @@
+// Criação de variaveis de cor e gradiente
+$blue: #0059ff;
+$purple: #5f00cc;
+$bg-color: rgb(27, 27, 27);
+$gradiente-azul: linear-gradient(to right, #0059ff, #5f00cc);
+
+// Estilo da tabela das informações do úsuario para diferentes tamanhos de tela
+#table-profile {
+    font-size: 26px;
+    transform: skew(-10deg, 0deg);
+    border: 10px solid transparent;
+    border-image: $gradiente-azul;
+    border-image-slice: 1;
+    outline: none;
+    border-radius: 10px;
+    @include for-sm-only{
+        font-size: 15px;
+        transform: skew(-5deg, 0deg);
+    }
+    @include for-md-up{
+        font-size: 20px;
+    }
+    @include for-lg-up{
+        font-size: 26px;
+    }
+
+    table{
+        width: 100%;
+    }
+
+    tr{
+        height: 2em;
+    td:first-of-type{
+        width: 8%;
+        text-align: center;
+    }
+    }
+
+    td{
+        background-color: rgba($purple, 0.1);
+        border: 0.2em solid $bg-color;
+        text-align: initial;
+    }
+
+    .material-icons {
+        font-size: 32px;
+        vertical-align: middle;
+    }
+}
+
+// Tamanho da imagem de rank
+#rank-image {
+    width: 250px;
+    height: 250px;
+}

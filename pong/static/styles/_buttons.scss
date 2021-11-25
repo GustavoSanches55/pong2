@@ -1,0 +1,263 @@
+// Importação de fonte
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+// Criação de variaveis de cor e gradiente
+$cinzadefundo : #1f1f1f;
+
+$gradiente-vermelho: linear-gradient(to right, white, rgb(255, 196, 196), rgb(255, 0, 43),rgb(204, 0, 0));
+$box-shadow-vermelho: rgba(255, 0, 0, 0.5);
+$gradiente-azul-grande: linear-gradient(to right, white, rgb(196, 255, 255), rgb(0, 89, 255),rgb(95, 0, 204));
+$gradiente-azul: linear-gradient(to right, #0059ff, #5f00cc);
+$gradiente-azul-claro: linear-gradient(to right, white, rgb(196, 255, 255), #a1c2ff, #94e1ff);
+$box-shadow-azul: rgba(0, 153, 255, 0.5);
+
+// Criação de variáveis para fins de animação
+$translate-0: translate(0em, 0em) skew(-10deg, 0deg);
+$translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
+
+// Sombras e movimentação dos botões vermelhos
+@mixin hover1() {
+  -webkit-box-shadow: $box-shadow-vermelho -0.3em 0.3em 0.8em;
+          box-shadow: $box-shadow-vermelho -0.3em 0.3em 0.8em;
+  -webkit-transform: $translate-03;
+          transform: $translate-03;
+}
+
+@mixin active1 {
+  -webkit-box-shadow: $box-shadow-vermelho 0em 0em 2em;
+          box-shadow: $box-shadow-vermelho 0em 0em 2em;
+  -webkit-transform: $translate-0;
+          transform: $translate-0;
+}
+
+
+// Transições
+@mixin transition-all {
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+	transition: all 200ms ease-in-out;
+}
+
+
+// Estilo dos botões do menu(azul)
+// Reaproveitado para o botão de back no topo esquerdo das páginas
+.menu-bt {
+  background-color: transparent;
+  font-weight: bold;
+  font-size: large;
+  text-align: initial;
+  color: white;
+  text-decoration: none;
+  display:inline-block;
+  border-style: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin: .3em;
+  width: 15em;
+  max-width: 70vw;
+  transform: skewX(-10deg);
+  cursor: pointer;
+  
+  background-size: 300% 100%;
+  background-position: 100% 0%;
+  background-image: $gradiente-azul-grande;
+  
+  &:before { content: "⠀";}
+  &.text-center:before { content: "";}
+  
+  &:hover {
+   @include transition-all; 
+    background-position: 0% 0%;
+    transform: $translate-03;
+    color: rgb(27, 27, 27);
+    box-shadow: $box-shadow-azul -0.3em 0.3em .8em;
+    }
+
+  &:active {
+    transition: 50ms;
+    transform: $translate-0;
+    box-shadow: $box-shadow-azul 0em 0em 2em;
+  }
+    transition-duration: 400ms;
+}
+
+// Alterações que sobrepoem algumas configs do menu-bt para botões vermelhos
+.red-bt {
+    background-image: $gradiente-vermelho;
+    width: 4em;
+    height: 3em;
+    &:before { content: "";}
+
+    &:hover{
+        box-shadow: $box-shadow-vermelho -0.3em 0.3em .8em;
+    }
+    &:hover .icon-bt{
+      filter: brightness(11%);
+    }
+    &:active {
+      box-shadow: $box-shadow-vermelho -0.3em 0.3em 2em;
+    }
+}
+
+// Classe que centraliza os ícones no centro do botão
+// No momento apenas em uso nos botões de retorno
+.icon-bt{
+  position:absolute;
+  top: 50%;
+  left:50%;
+  height: 80%;
+  width: 80%;
+  transform: translate(-50%, -50%);
+}
+
+// Estilo dos botões com gradiente apenas na borda
+// Utilizado na página "modos.html", por exemplo
+.final__gradient-button-1{
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  height: 250px;
+  width: 250px;
+  max-width: 80vw;
+  max-height: 80vw;
+  margin: .3em;
+  border-radius: 100px;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 20px 40px;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-color: $cinzadefundo;
+  border: 10px solid transparent;
+  border-image: $gradiente-azul;
+  border-image-slice: 1;
+  color: white;
+  outline: none;
+  -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+  -webkit-transform: skewX(-10deg);
+          transform: skewX(-10deg);
+  cursor: pointer;
+
+  &:hover{
+    background-size: 100%;
+    background-image: $gradiente-azul;
+    color: white;
+    border-radius: 10px;
+    -webkit-transform: $translate-03;
+            transform: $translate-03;
+    border-image-slice: 1;
+    border: none;
+  }
+
+  &:active{
+    background-size: 100%;
+    background-image: $gradiente-azul;
+    color: white;
+    border-radius: 10px;
+    -webkit-transform: $translate-0;
+            transform: $translate-0;
+    border-image-slice: 1;
+  }
+
+  .icon-bt{
+    height: 40%;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  
+}
+
+// Botão de info em "modos_explicacao.html"
+// Reaproveitado de um modelo antigo
+.info-bt{
+  font-weight: bold;
+  font-size: large;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  border-style: none;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 0.3em;
+  width: 3em !important;
+  -webkit-transform: skewX(-10deg);
+          transform: skewX(-10deg);
+  cursor: pointer;
+  background-size: 300% 100%;
+  background-position: 100% 0%;
+  background-image: $gradiente-vermelho;
+  -webkit-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+  
+  &:hover {
+    @include hover1;
+    border-radius: 10px;
+
+    background-position: 0% 0%;
+    color: rgb(27, 27, 27);
+  }
+
+  &:active {
+    @include active1;
+    border-radius: 10px;   
+    background-position: 0% 0%;
+    color: rgb(27, 27, 27);
+  }
+}
+
+// Versão azul do botão de voltar (utilizada no botão de dúvidas)
+#azul{
+  background-image: $gradiente-azul-grande;
+  
+  &:hover {
+    @include hover1();
+    -webkit-box-shadow: $box-shadow-azul -0.3em 0.3em 0.8em;
+            box-shadow: $box-shadow-azul -0.3em 0.3em 0.8em;
+  }
+
+  &:active {
+    @include active1();
+    -webkit-box-shadow: $box-shadow-azul -0.3em 0.3em 0.8em;
+            box-shadow: $box-shadow-azul -0.3em 0.3em 0.8em;
+  }
+}
+
+// Botão "aba" da tabela de leaderboard
+.tab-bt{
+  @extend .menu-bt;
+  border-radius: 10px 10px 0px 0px;
+  
+  &:hover {
+   @include transition-all; 
+    background-position: 0% 0%;
+    transform: skew(-10deg, 0deg);
+    color: rgb(27, 27, 27);
+    box-shadow: $box-shadow-azul 0em -.2em .8em;
+    }
+
+  &:active {
+    transition: 50ms;
+    transform: translate(0em, .1em) skew(-10deg, 0deg);
+    box-shadow: $box-shadow-azul 0em -.5em .8em;
+  }
+    transition-duration: 400ms;
+}
+
+.tab-bt-active {
+  @extend .tab-bt;
+  
+  color: rgb(27, 27, 27);
+  background-image: $gradiente-azul-claro;
+  
+}

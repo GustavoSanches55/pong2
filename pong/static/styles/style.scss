@@ -1,0 +1,104 @@
+// Mudança na responsividade de dispositivos pequenos(tela de 576px+)
+@mixin for-sm-up {
+	@media (min-width: 576px) { @content; }
+}
+@mixin for-sm-only {
+	@media (max-width: 576px) { @content; }
+}
+
+// Mudança na responsividade de dispositivos médios(tela de 768px+)
+@mixin for-md-up {
+	@media (min-width: 768px){@content; }
+}
+@mixin for-md-down {
+	@media (max-width: 768px){@content; }
+}
+@mixin for-md-only {
+	@media (min-width: 768px) and (max-width: 992px){@content; }
+}
+
+// Mudança na responsividade de dispositivos grandes(tela de 992px+)
+@mixin for-lg-up {
+	@media (min-width: 992px){@content; }
+}
+
+// Mudança na responsividade de dispositivos bem grendes(tela de 1200px+)
+@mixin for-xl-up {
+	@media (min-width: 1200px){@content; }
+}
+
+// Definição de variáveis de cor
+$cinzadefundo : #1f1f1f;
+
+$gradiente-vermelho: linear-gradient(to right, white, rgb(255, 196, 196), rgb(255, 0, 43),rgb(204, 0, 0));
+$box-shadow-vermelho: rgba(255, 0, 0, 0.5);
+$gradiente-azul-grande: linear-gradient(to right, white, rgb(196, 255, 255), rgb(0, 89, 255),rgb(95, 0, 204));
+$gradiente-azul: linear-gradient(to right, #0059ff, #5f00cc);
+$box-shadow-azul: rgba(0, 153, 255, 0.5);
+
+
+$translate-0: translate(0em, 0em) skew(-10deg, 0deg);
+$translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
+
+// Definição de fonte e alinhamento de todos os elementos das páginas
+*{
+	font-family: "Inconsolata", monospace;
+	text-align: center;
+  }
+  
+  // Definições de cor das páginas
+  body{
+	background: $cinzadefundo;
+	color: white;
+  }
+
+// Css de configuração do body do menu e do login
+.body-center{
+	display: flex;
+    height: 100vh;
+    justify-content: center;
+    vertical-align: middle;
+    flex-direction: column;
+}
+
+
+// Css de configuração dos botões do menu, como um todo.
+.menu-item-list{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explicacao>div{
+	@include for-md-down{
+		margin-bottom: 20px;
+	}
+}
+
+// Mudança da barra de rolamento do site como um todo
+::-webkit-scrollbar {
+	width: 20px;
+}
+  
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px grey; 
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+}
+   
+::-webkit-scrollbar-thumb {
+	background-image: linear-gradient(to top, #0059ff, #5f00cc);; 
+	border-bottom-right-radius: 10px;
+	border-top-right-radius: 10px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+	background: #5f00cc; 
+}
+
+
+// Importação dos outros arquivos scss
+@import "buttons";
+@import "titles-n-tables";
+@import "login";
+@import "leaderboards";

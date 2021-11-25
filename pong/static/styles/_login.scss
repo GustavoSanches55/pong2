@@ -1,0 +1,35 @@
+// Estilo e posicionamento dos elementos da página de login
+.login_screen{
+    #nav_superior{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+    }
+    .signin{
+        margin-top: 20px;
+        max-width: 300px;
+        vertical-align: middle;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        place-content: center;
+        input {
+            text-align: left;
+            margin: 2px;
+        }
+        .checkbox label{
+            cursor: pointer;
+            input{
+                inline-size: 20px;
+                cursor: pointer;
+            }
+        }
+    }
+    .user-picture{
+        height: 200px;
+        width: 100%;
+        font-size: 150px;
+    }
+}
