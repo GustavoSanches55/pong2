@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>L⬤GIN</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="img/Icon_pag.png">
+</head>
+<body class="body-center text-center login_screen container-fluid">
+
+    <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
+    <header>
+        <div id="nav_superior">
+            <div class="col-6"> 
+                <a class="float-start menu-bt red-bt" href="index.html">
+                    <img src="img/arrow_back.svg" class="icon-bt" alt="Botão de voltar">
+                </a>
+            </div>
+            <div class="col-6">
+                <img class="float-end" id = "corner-logo" src="img/logo_big.png" alt="Logo Pong">
+            </div>
+        </div>
+    </header>
+
+    <!--Campo de preenchimento de login do usuário-->
+    <form class="signin">
+        <div class="user-picture text-center">
+            <i class="far fa-user-circle"></i>
+        </div>
+        <h1 class="h3 mb-3">Login</h1>
+        <label for="inputUser" class="sr-only">Nome de usuário</label>
+        <input id="inputUser" type="text" class="form-control" placeholder="Seu nome de usuário" required autofocus>
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me">
+                Lembrar de mim
+            </label>
+        </div>
+        <button class="menu-bt text-center" type="submit">Login</button>
+    </form>
+
+    <!--Simulador do login-->
+    <a href="index.html?simulate_logged=y">Simular Login</a>
+    <p>(Vai deixar você acessar a página Profile através do menu)</p>
+    
+    <footer>
+        <script src="https://kit.fontawesome.com/a3b17821b3.js" crossorigin="anonymous"></script>
+    </footer>
+</body>
+</html>
