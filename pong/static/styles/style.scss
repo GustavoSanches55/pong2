@@ -55,10 +55,12 @@ $translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
 // Css de configuração do body do menu e do login
 .body-center{
 	display: flex;
-    height: 100vh;
     justify-content: center;
     vertical-align: middle;
     flex-direction: column;
+}
+body.body-center{
+	height: 100vh;
 }
 
 

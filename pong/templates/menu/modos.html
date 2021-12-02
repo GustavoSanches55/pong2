@@ -7,20 +7,7 @@
 <body class="container-fluid">
 
     <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
-    <header>
-        <div class=row id="nav_superior">
-            <div class="col-6"> 
-                <a class="float-start menu-bt red-bt" href="{% url 'index' %}">
-                    <img src="{%static 'img/arrow_back.svg'%}" class="icon-bt" alt="Botão de Voltar">
-                </a>
-
-                <a class="info-bt float-start" id="azul" href="{% url 'modos_explicacao'%}">?</a>
-            </div>
-            <div class="col-6">
-                <img class="float-end" id = "corner-logo" src="{% static 'img/logo_big.png' %}" alt="Logo Pong">
-            </div>
-        </div>
-    </header> 
+    {% include 'menu/nav.html' with includeExplanation=True %}
         
     <!--Botões para a seleção direta dos modos de jogo-->
     <!--Futuramente mais utilidades serão adicionadas para facilitar a procura de salas de jogo...-->

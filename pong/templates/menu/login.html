@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
     {% include 'menu/head.html'%}
-<body class="body-center text-center login_screen container-fluid">
+<body class="text-center login_screen container-fluid">
 
     {% include 'menu/nav.html' %}
+    <content class="body-center">
+        <!--Campo de preenchimento de login do usuário-->
+        <form class="signin">
+            <div class="user-picture text-center">
+                <i class="far fa-user-circle"></i>
+            </div>
+            <h1 class="h3 mb-3">Login</h1>
+            <label for="inputUser" class="sr-only">Nome de usuário</label>
+            <input id="inputUser" type="text" class="form-control" placeholder="Seu nome de usuário" required autofocus>
+            <label for="inputPassword" class="sr-only">Senha</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me">
+                    Lembrar de mim
+                </label>
+            </div>
+            <button class="menu-bt text-center" type="submit">Login</button>
+        </form>
 
-    </header>
-
-    <!--Campo de preenchimento de login do usuário-->
-    <form class="signin">
-        <div class="user-picture text-center">
-            <i class="far fa-user-circle"></i>
-        </div>
-        <h1 class="h3 mb-3">Login</h1>
-        <label for="inputUser" class="sr-only">Nome de usuário</label>
-        <input id="inputUser" type="text" class="form-control" placeholder="Seu nome de usuário" required autofocus>
-        <label for="inputPassword" class="sr-only">Senha</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me">
-                Lembrar de mim
-            </label>
-        </div>
-        <button class="menu-bt text-center" type="submit">Login</button>
-    </form>
-
-    <!--Simulador do login-->
-    <a href="index.html?simulate_logged=y">Simular Login</a>
-    <p>(Vai deixar você acessar a página Profile através do menu)</p>
-    
-    <footer>
-        <script src="https://kit.fontawesome.com/a3b17821b3.js" crossorigin="anonymous"></script>
-    </footer>
+        <!--Simulador do login-->
+        <a href="index.html?simulate_logged=y">Simular Login</a>
+        <p>(Vai deixar você acessar a página Profile através do menu)</p>
+        
+        <footer>
+            <script src="https://kit.fontawesome.com/a3b17821b3.js" crossorigin="anonymous"></script>
+        </footer>
+    </content>
 </body>
 </html>

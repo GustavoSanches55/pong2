@@ -14,7 +14,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 100vh;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -23,6 +22,10 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+body.body-center {
+  height: 100vh;
 }
 
 .menu-item-list {
@@ -380,16 +383,6 @@ body {
 #rank-image {
   width: 250px;
   height: 250px;
-}
-
-.login_screen #nav_superior {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .login_screen .signin {

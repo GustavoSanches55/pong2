@@ -1,11 +1,15 @@
 {% load static %}
+
 <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
 <header>
     <div class=row id="nav_superior">
         <div class="col-6"> 
-            <a class="float-start menu-bt red-bt" href="{% url 'index' %}">
+            <a class="float-start menu-bt red-bt" href="{% url backLink|default:'index' %}">
                 <img src="{%static 'img/arrow_back.svg'%}" class="icon-bt" alt="Botão de Voltar">
             </a>
+            {% if includeExplanation|default:False %}
+                <a class="info-bt float-start" id="azul" href="{% url 'modos_explicacao'%}">?</a>
+            {% endif %}
         </div>
         <div class="col-6">
             <img class="float-end" id = "corner-logo" src="{% static 'img/logo_big.png' %}" alt="Logo Pong">
