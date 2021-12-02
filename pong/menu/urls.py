@@ -9,5 +9,6 @@ urlpatterns = [
     path("login", views.login, name="login"),
     path("modos/explicacao", views.modos_explicacao, name="modos_explicacao"),
     path("leaderboards", views.leaderboards, name="leaderboards"),
-    path("jogo", views.jogo, name="jogo")
+    path("jogo", views.jogo, name="jogo"),
+    path("salvar_csv", views.salvar_csv, name="salvar_csv")
 ]
