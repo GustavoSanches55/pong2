@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    {% include 'menu/head.html'%}
+
+<body class="container-fluid">
+
+    <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
+    {% include 'menu/nav.html' with includeExplanation=True %}
+    
+
+    <!--Botões para a seleção direta dos modos de jogo-->
+    <!--Futuramente mais utilidades serão adicionadas para facilitar a procura de salas de jogo...-->
+    <!--a procura pela sala de amigos e até por partidas-->
+    <div class="container-fluid vertical-center">
+        <div class="row justify-content-md-center container-fluid ">
+
+            <!--Coluna dos botões da página principal-->
+            <div class="col-12 col-md-5 menu-item-list align-self-center flex-column">
+                <a class="menu-bt" href = 'sanches/'><i class="fas fa-table-tennis"></i> Sanches</a>
+                <a class="menu-bt" href = "{% url 'leaderboards' %}"><i class="fas fa-stream"></i> Kayo</a>
+                <a class="menu-bt" href = "{% url 'analises_menu' %}"><i class="fas fa-stream"></i> Treuke</a>
+                <a class="menu-bt" href = "{% url 'analises_menu' %}"><i class="fas fa-stream"></i> Laguardia</a>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

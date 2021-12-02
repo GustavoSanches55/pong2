@@ -22,9 +22,13 @@ def modos_explicacao(request):
 
 def profile(request):
     return render(request,"menu/profile.html")
+    
+def analises_menu(request):
+    return render(request, "menu/analises_menu.html")
 
 def jogo(request):
     return render(request, "PONG/PONG.html")
+
 
 def salvar_csv(request):
     i=0
