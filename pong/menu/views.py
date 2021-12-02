@@ -20,3 +20,6 @@ def modos_explicacao(request):
 
 def profile(request):
     return render(request,"menu/profile.html")
+
+def jogo(request):
+    return render(request, "PONG/PONG.html")
