@@ -13,8 +13,8 @@
         <h1>Analises do Sanches:</h1>
         <br>
         <div class="col-6">
-            De acordo com o dados gerados pelo grupo, decidi analisar as pontuações feitas pelos jogadores. Com um foco
-            especial na influência dos pontos no mesmo. Sendo assim, a minha pergunta guia é:<br><br> "Qual a influência do 
+            De acordo com os dados gerados pelo grupo, decidi analisar as pontuações feitas pelos jogadores. Com um foco
+            especial na influência do rank no mesmo. Sendo assim, a minha pergunta guia é:<br><br> "Qual a influência do 
             ranking na pontuação dos jogadores durante as partidas?"<br><br>
         </div>
     </div>
@@ -22,7 +22,7 @@
     <h1 class="h3 mb-3">Tabela para analises:</h1>
 
     <div class="row justify-content-center">
-        <div class="col-9" style="">
+        <div class="col-8" style="">
         {{ partidas|safe }}
         </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="row justify-content-center">
         <br>
         <div class="col-6">
-            A tabela ( que no momento está um pouco dificil de ler ), possui colunas tais como:
+            A tabela possui colunas tais como:
             <ul>
                 <li>Rank dos jogadores, e o ranking médio da partida</li>
                 <li>Pontuação de ambos jogadores</li>
@@ -43,7 +43,56 @@
 
     <br><hr><br>
 
+    <h1 class="h3 mb-3">Primeiras analises de dados</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-6" style="">
+        {{ descricao|safe }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row justify-content-center">
+        <br>
+        <div class="col-6">
+            Nas primeiras análises observando a tabela de descrição, percebe-se que não há grandes diferenças
+            em jogar como jogador 1 ou 2. Isso indica que o jogo é equilibrado para ambos. E que a pontuação
+            depende meramente de habilidade. Não há nenhum fator do jogo que dê vantagens para um dos lados.
+        </div>
+    </div>
     
+    <br><hr><br>
+
+    <h1 class="h3 mb-3">Os dez melhores jogadores em pontuação</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-5" style="">
+        {{ por_jogador|safe }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row justify-content-center">
+        <br>
+        <div class="col-6">                        
+            A tabela acima apresenta os 10 melhores jogadores. Que foram agrupados com base na média de suas partidas
+            e classificados pela média de seus pontos.<br><br>
+            Em uma rápida olhada, nota-se que esse pódio não considera o rank do jogador. Pois 5º lugar da nossa lista
+            possui rank 7, e está na lista por apenas ter dado sorte de jogar apenas com ranks 0.<br><br>
+            Gostaria de ressaltar uma curiosidade: O primeiro lugar do pódio possui o mesmo nick do melhor jogador
+            de League of Legends (lol), apesar dos dados terem sido concebidos de forma aleatoria. <br><br>
+        </div>
+        <h6> Em homenagem ao Faker </h6>
+        <div class="col-12 col-md-5 align-self-center">
+            <img class="img-fluid align-center" src="{% static 'img/faker.jpg'%}" alt="Faker" draggable="false">
+        </div>
+
+    </div>
+    
+    <br><hr><br>
+
     <div class="row justify-content-center">
         <h3>Gráfico 1:</h3>
         <br>
@@ -62,14 +111,14 @@
 
     <div class="row justify-content-center">
         <br>
-        <div class="col-6">
+        <div class="col-6">            
             Percebe-se que o jogador 1 (em azul) não tem sua média alterada com o passar dos rankings. O que ocorre é que
             os jogadores adversários ao jogador 1 (no gráfico como jogador 2) passam a conseguir pontuar cada vez menos.
             Isso ocorre pois não há de fato um matchmaking no jogo em que coloque dois jogadores de mesmo nível para jogadores.
-            Dessa forma, quanto maior o seu rank maior também a probabilidade de você jogar contra alguem de rank menor, pois
-            há cada vez mais ranks menores do que o seu. E ao jogar contra alguém pior do que você, em média, o seu adversário 
+            Dessa forma, quanto maior o seu rank maior também a probabilidade de você jogar contra alguém de rank menor, pois
+            há cada vez mais ranks menores do que o seu. E ao jogar contra alguém pior do que você, em média, o seu adversário
             fará menos pontos.
-            
+
         </div>
     </div>
     <br><hr><br>
@@ -80,7 +129,8 @@
         <div class="col-6">
             O segundo gráfico mostra a distribuição de pontos em um scatterplot e em dois gráficos de barras. O gráfico
             de cima ilustra a frequência das pontuações para o jogador 1. O gráfico da direita ilustra para o jogador 2.
-            E o gráfico central mostra as pontuações da partidas.
+            E o gráfico central mostra as pontuações das partidas.
+
             
         </div>
     </div>

@@ -9,6 +9,8 @@ import numpy as np
 
 # Create your views here.
 def index(request):
+    colunas = ['p1','p2','score1','score2','rankp1','rankp2','media_rank','cat_p1','cat_p2','cat_partida']
+
     item = Jogador.objects.all().values()
     jogadores = pd.DataFrame(item)
 
@@ -16,40 +18,25 @@ def index(request):
     partidas = pd.DataFrame(item2)
     
     adiciona_colunas(jogadores,partidas)
+
+    partidas = partidas[colunas]
+
+    # Código para salvar imagem do graf1
     # graf1(partidas)
 
+    # Código para salvar imagem do graf2
     # partidas_agrupadas = partidas.groupby(partidas["categorias_p1"]).mean().round(2)
     # graf2(partidas_agrupadas)
 
-    por_jogador = partidas.groupby("p1").mean().sort_values('score1', ascending=False)
-
-    mydict = {
-        "partidas": partidas.head(10).to_html(),
-        "jogadores": jogadores.head(10).to_html(),
-        "por_jogador": por_jogador.head(10).to_html()
-    }
-    return render(request,"sanches/index.html", context=mydict)
-
-
-def index_sanches(request):
-    item = Jogador.objects.all().values()
-    jogadores = pd.DataFrame(item)
-
-    item2 = Partida.objects.all().values()
-    partidas = pd.DataFrame(item2)
-    
-    adiciona_colunas(jogadores,partidas)
-    # graf1(partidas)
-
-    # partidas_agrupadas = partidas.groupby(partidas["categorias_p1"]).mean().round(2)
-    # graf2(partidas_agrupadas)
 
     por_jogador = partidas.groupby("p1").mean().sort_values('score1', ascending=False)
 
+    descricao = partidas.describe().round(2)
+
     mydict = {
-        "partidas": partidas.head(10).to_html(),
-        "jogadores": jogadores.head(10).to_html(),
-        "por_jogador": por_jogador.head(10).to_html()
+        "partidas": partidas.head(10).to_html(col_space=70,justify='center'),
+        "descricao": descricao.to_html(col_space=70,justify='center'),
+        "por_jogador": por_jogador.head(10).to_html(col_space=70,justify='center')
     }
     return render(request,"sanches/index.html", context=mydict)
 
@@ -64,19 +51,19 @@ def adiciona_colunas(jogadores, partidas):
 
     partidas['media_rank'] = (partidas['rankp1']+partidas['rankp2'])/2
 
-    partidas["categorias_p1"] = partidas['rankp1']
-    partidas["categorias_p2"] = partidas['rankp2']
-    partidas["categoria_partida"] = partidas['media_rank']
-    partidas["categorias_p1"] = pd.cut(partidas['rankp1'], 5, labels=labels)
-    partidas["categorias_p2"] = pd.cut(partidas['rankp2'], 5, labels=labels)
-    partidas["categoria_partida"] = pd.cut(partidas['categoria_partida'], 5, labels=labels)
+    partidas["cat_p1"] = partidas['rankp1']
+    partidas["cat_p2"] = partidas['rankp2']
+    partidas["cat_partida"] = partidas['media_rank']
+    partidas["cat_p1"] = pd.cut(partidas['rankp1'], 5, labels=labels)
+    partidas["cat_p2"] = pd.cut(partidas['rankp2'], 5, labels=labels)
+    partidas["cat_partida"] = pd.cut(partidas['cat_partida'], 5, labels=labels)
 
     partidas['media_rank'] = (partidas['rankp1']+partidas['rankp2'])/2
 
     partidas["scores_possiveis"] = partidas["score1"]
 
     colors = ['#EB0413', '#D020F5', '#4328DE', '#208DF5', '#1EEBC6']
-    partidas['c'] = partidas.categoria_partida.map({labels[0]:colors[0],labels[1]:colors[1],labels[2]:colors[2],labels[3]:colors[3],labels[4]:colors[4]})
+    partidas['c'] = partidas.cat_partida.map({labels[0]:colors[0],labels[1]:colors[1],labels[2]:colors[2],labels[3]:colors[3],labels[4]:colors[4]})
 
     return partidas
 
@@ -139,7 +126,7 @@ def graf1(partidas):
     plt.savefig('imagem')
 
 
-def graf2(partidas_agrupadas):
+def graf2(partidas_agrupadas,colors):
         
     mpl.rcParams['axes.facecolor'] = "#1f1f1f00"
     mpl.rcParams['figure.facecolor'] = "#1f1f1f00"
@@ -149,6 +136,11 @@ def graf2(partidas_agrupadas):
     mpl.rcParams['ytick.color'] = "white"
 
     fig = plt.figure(figsize=(8, 8), facecolor="#1f1f1f00")
+
+    left, width = 0.1, 0.65
+    bottom, height = 0.1, 0.65
+
+    rect_scatter = [left, bottom, width, height]
 
     ax = fig.add_axes(rect_scatter)
 
