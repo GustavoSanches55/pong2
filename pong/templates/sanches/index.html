@@ -1,1 +1,114 @@
-oi
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    {% include 'menu/head.html'%}
+
+<body class="container-fluid">
+    <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
+    {% include 'menu/nav.html' with backlink='menu/analises_menu' %}
+
+<hr>
+    <div class="row justify-content-center">
+        <h1>Analises do Sanches:</h1>
+        <br>
+        <div class="col-6">
+            De acordo com o dados gerados pelo grupo, decidi analisar as pontuações feitas pelos jogadores. Com um foco
+            especial na influência dos pontos no mesmo. Sendo assim, a minha pergunta guia é:<br><br> "Qual a influência do 
+            ranking na pontuação dos jogadores durante as partidas?"<br><br>
+        </div>
+    </div>
+
+    <h1 class="h3 mb-3">Tabela para analises:</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-9" style="">
+        {{ partidas|safe }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row justify-content-center">
+        <br>
+        <div class="col-6">
+            A tabela ( que no momento está um pouco dificil de ler ), possui colunas tais como:
+            <ul>
+                <li>Rank dos jogadores, e o ranking médio da partida</li>
+                <li>Pontuação de ambos jogadores</li>
+                <li>id dos jogadores</li>
+              </ul>
+        </div>
+    </div>
+
+    <br><hr><br>
+
+    
+    <div class="row justify-content-center">
+        <h3>Gráfico 1:</h3>
+        <br>
+        <div class="col-6">
+            O primeiro gráfico mostra a evolução da pontuação dos jogadores com o passar dos rankings. Os dados do gráfico
+            foram calculados partindo da média de pontuação do jogador 1.
+            
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-5 align-self-center">
+            <img class="img-fluid align-center" src="{% static 'img/sanches2.png'%}" alt="Grafico 2 sanches" draggable="false">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <br>
+        <div class="col-6">
+            Percebe-se que o jogador 1 (em azul) não tem sua média alterada com o passar dos rankings. O que ocorre é que
+            os jogadores adversários ao jogador 1 (no gráfico como jogador 2) passam a conseguir pontuar cada vez menos.
+            Isso ocorre pois não há de fato um matchmaking no jogo em que coloque dois jogadores de mesmo nível para jogadores.
+            Dessa forma, quanto maior o seu rank maior também a probabilidade de você jogar contra alguem de rank menor, pois
+            há cada vez mais ranks menores do que o seu. E ao jogar contra alguém pior do que você, em média, o seu adversário 
+            fará menos pontos.
+            
+        </div>
+    </div>
+    <br><hr><br>
+
+    <div class="row justify-content-center">
+        <h3>Gráfico 2:</h3>
+        <br>
+        <div class="col-6">
+            O segundo gráfico mostra a distribuição de pontos em um scatterplot e em dois gráficos de barras. O gráfico
+            de cima ilustra a frequência das pontuações para o jogador 1. O gráfico da direita ilustra para o jogador 2.
+            E o gráfico central mostra as pontuações da partidas.
+            
+        </div>
+    </div>
+
+    <br>  
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-5 align-self-center">
+            <img class="img-fluid align-center" src="{% static 'img/sanches1.png'%}" alt="Grafico 1 sanches" draggable="false">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <br>
+        <div class="col-6">
+            Um primeiro ponto, e um pouco óbvio, a se notar é que existem partidas com todas as combinações
+            possíveis de pontuação. *Note que não há nenhum jogo 10 a 10 pois se qualquer um dos jogadores 
+            fizer essa quantidade de pontos o jogo acaba.<br><br>
+            A cor do gráfico central é definido pelo ranking médio da partida. <br>(rank_p1+rank_p2)/2 <br> Quanto
+            mais próximo do verde-água maior o ranking e, no extremo oposto, quanto mais próximo do vermelho menor.<br><br>
+            A divisão de cores nos revela que em partidas de ranking baixo, ocorrer o gol é muito mais comum, provavelmente
+            explicado pela falta de habilidade dos jogadores em defender.<br><br>
+            Por fim, vale ressaltar que a maioria das pontuações ocorre em 5 pontos, e tem formato parecido com a de uma distribuição
+            normal
+            
+        </div>
+    </div>
+
+    <br> 
+</body>
+
+</html>
