@@ -100,6 +100,22 @@ $translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
     }
 }
 
+// Alterações que sobrepoem algumas configs do menu-bt para botões vermelhos porém mantém o tamanho
+// usado no botão notas, das análises
+.alert-bt {
+  background-image: $gradiente-vermelho;
+
+  &:hover{
+      box-shadow: $box-shadow-vermelho -0.3em 0.3em .8em;
+  }
+  &:hover .icon-bt{
+    filter: brightness(11%);
+  }
+  &:active {
+    box-shadow: $box-shadow-vermelho -0.3em 0.3em 2em;
+  }
+}
+
 // Classe que centraliza os ícones no centro do botão
 // No momento apenas em uso nos botões de retorno
 .icon-bt{
