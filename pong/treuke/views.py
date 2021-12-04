@@ -48,10 +48,14 @@ def index(request):
     plot_dist_derrotas(df_players["derrotas"],path)
     dist_derrotas = path+".png"
 
+    path="plots/treuke_fig_2"
+    plot_idade_sucesso(df_players["idade"],df_players["perc_vit"],path)
+    fig_idade_sucesso = path+".png"
 
     mydict = {
         "df_derrotas": df_derrotas.to_html(col_space=70,justify='center'),
         "dist_derrotas": dist_derrotas,
+        "fig_idade_sucesso": fig_idade_sucesso,
         "df_matches": df_matches.head(10).to_html(col_space=70,justify='center'),
         "df_players": df_players.head(10).to_html(col_space=70,justify='center')
     }
@@ -73,4 +77,13 @@ def plot_dist_derrotas(data,path):
     plt.title('Distribuição de derrotas')
     path = r"static/" + path
     plt.savefig(path)
+    plt.close()
 
+def plot_idade_sucesso(idade,perc_vit,path):
+    plt.scatter(idade,perc_vit, color="#52219a")
+    plt.xlabel('Idade')
+    plt.ylabel('Taxa de vitoria')
+    plt.title('Relação entre idade e sucesso')
+    path = r"static/" + path
+    plt.savefig(path)
+    plt.close()

@@ -8,26 +8,30 @@
     <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
     {% include 'menu/nav.html' with backLink='analises_menu' %}
 
-<hr>
-    <div class="row justify-content-center">
-        <h1>Analises feitas por Lucas Treuke:</h1>
-        <br>
-        <div class="col-6">
-            <h2>O quão frustrante o jogo pode ser para certos jogadores?</h2>
-            <p>O objetivo é analisar as quantias de derrotas e o tempo de jogo, para poder ter algum insight sobre essa pergunta.</p>
+    <main>
+        <hr>
+        <div class="row justify-content-center">
+            <h1>Analises feitas por Lucas Treuke:</h1>
+            <br>
+            <div class="col-6">
+                <h2>O quão frustrante o jogo pode ser para certos jogadores?</h2>
+                <p>O objetivo é analisar as quantias de derrotas e o tempo de jogo, para poder ter algum insight sobre essa pergunta.</p>
+            </div>
         </div>
-    </div>
 
-    <br><hr><br>
-    
-    <div class="row justify-content-center">
-        <div class = "tabela-fit">
-        {{ df_derrotas|safe }}
+        <br><hr><br>
+        
+        <div class="row justify-content-center">
+            <div class = "tabela-fit">
+            {{ df_derrotas|safe }}
+            </div>
         </div>
-    </div>
-    <p>Encontramos então a seleção de jogadores que mais perderam, o lider deles é curiosamente o jogador que também tem o maior numero de partidas... E ele perdeu todas... Pobre Patata414.</p>
-    <img src="{% static dist_derrotas %}">
+        <p>Encontramos então a seleção de jogadores que mais perderam, o lider deles é curiosamente o jogador que também tem o maior numero de partidas... E ele perdeu todas... Pobre Patata414.</p>
+        <img src="{% static dist_derrotas %}">
 
+        <p>Uma possibilidade é que algo como a idade se relacione ao baixo sucesso, pois elas estão proximas na tabela mostrada.</p>
+        <img src="{% static fig_idade_sucesso %}">
+    </main>
 </body>
 
 </html>

@@ -81,6 +81,10 @@ body.body-center{
 	}
 }
 
+.loading{
+	cursor: wait !important;
+}
+
 // Mudança da barra de rolamento do site como um todo
 ::-webkit-scrollbar {
 	width: 20px;
