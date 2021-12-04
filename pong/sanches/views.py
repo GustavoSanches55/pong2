@@ -9,25 +9,28 @@ import numpy as np
 
 # Create your views here.
 def index(request):
-    colunas = ['p1','p2','score1','score2','rankp1','rankp2','media_rank','cat_p1','cat_p2','cat_partida']
+    colunas = ['p1','p2','score1','score2','rankp1','rankp2','media_rank','cat_p1','cat_p2','cat_partida','c']
 
     item = Jogador.objects.all().values()
     jogadores = pd.DataFrame(item)
 
     item2 = Partida.objects.all().values()
     partidas = pd.DataFrame(item2)
-    
+
+    load_mpl_plot_style_params()
     adiciona_colunas(jogadores,partidas)
 
     partidas = partidas[colunas]
 
-    # Código para salvar imagem do graf1
-    # graf1(partidas)
-
+    
     # Código para salvar imagem do graf2
-    # partidas_agrupadas = partidas.groupby(partidas["categorias_p1"]).mean().round(2)
-    # graf2(partidas_agrupadas)
+    partidas_agrupadas = partidas.groupby(partidas["cat_p1"]).mean().round(2)
+    path=r"static/plots/sanches_fig_1.png"
+    graf2(partidas_agrupadas,path)
 
+    # Código para salvar imagem do graf1
+    path=r"static/plots/sanches_fig_2.png"
+    graf1(partidas,path)
 
     por_jogador = partidas.groupby("p1").mean().sort_values('score1', ascending=False)
 
@@ -65,7 +68,6 @@ def adiciona_colunas(jogadores, partidas):
     colors = ['#EB0413', '#D020F5', '#4328DE', '#208DF5', '#1EEBC6']
     partidas['c'] = partidas.cat_partida.map({labels[0]:colors[0],labels[1]:colors[1],labels[2]:colors[2],labels[3]:colors[3],labels[4]:colors[4]})
 
-    return partidas
 
 
 
@@ -87,7 +89,8 @@ def scatter_hist(partidas, x, y, ax, ax_histx, ax_histy):
     ax_histx.hist(x, bins=bins)
     ax_histy.hist(y, bins=bins, orientation='horizontal')
 
-def graf1(partidas):
+
+def graf1(partidas,path):
     # definitions for the axes
     left, width = 0.1, 0.65
     bottom, height = 0.1, 0.65
@@ -96,8 +99,6 @@ def graf1(partidas):
     rect_scatter = [left, bottom, width, height]
     rect_histx = [left, bottom + height + spacing, width, 0.2]
     rect_histy = [left + width + spacing, bottom, 0.2, height]
-
-    # plt.style.use('dark_background')
 
     # start with a square Figure
     fig = plt.figure(figsize=(8, 8), facecolor="#1f1f1f")
@@ -111,42 +112,45 @@ def graf1(partidas):
     # use the previously defined function
     scatter_hist(partidas, partidas["score1"],partidas["score2"], ax, ax_histx, ax_histy)
 
-    mpl.rcParams['axes.facecolor'] = "#1f1f1f"
-    mpl.rcParams['figure.facecolor'] = "#1f1f1f"
-    mpl.rcParams['text.color'] = "white"
-    mpl.rcParams['axes.labelcolor'] = "white"
-    mpl.rcParams['xtick.color'] = "white"
-    mpl.rcParams['ytick.color'] = "white"
-
-
     plt.xlabel("Pontos jogador 1")
     plt.ylabel("Pontos jogador 2")
     fig.suptitle('Grafico de distribuição das pontuações por partida', fontsize=16)
 
-    plt.savefig('imagem')
+    plt.savefig(path)
+    plt.close()
 
 
-def graf2(partidas_agrupadas,colors):
-        
-    mpl.rcParams['axes.facecolor'] = "#1f1f1f00"
-    mpl.rcParams['figure.facecolor'] = "#1f1f1f00"
+def graf2(partidas_agrupadas,path):
+
+    fig = plt.figure(figsize=(8, 8), facecolor="#1f1f1f00")
+
+    # left, width = 0.1, 0.65
+    # bottom, height = 0.1, 0.65
+
+    # rect_scatter = [left, bottom, width, height]
+
+    ax = fig.add_axes([0.1,0.1,0.85,0.85])
+
+    ax.plot(partidas_agrupadas["score1"], c='#208DF5')
+    ax.plot(partidas_agrupadas["score2"], c='#D020F5')
+
+    ax.legend(['Jogador 1', 'Jogador 2'])
+
+    plt.savefig(path)
+    plt.close()
+
+
+
+def load_mpl_plot_style_params():
+    mpl.rcParams['axes.facecolor'] = "#FFFFFF00"
+    mpl.rcParams['figure.facecolor'] = "#FFFFFF00"
     mpl.rcParams['text.color'] = "white"
     mpl.rcParams['axes.labelcolor'] = "white"
     mpl.rcParams['xtick.color'] = "white"
     mpl.rcParams['ytick.color'] = "white"
+    mpl.rcParams['legend.facecolor'] = "#FFFFFF00"
+    mpl.rcParams['legend.framealpha'] = "0"
+    # mpl.rcParams['legend.frameon'] = True
 
-    fig = plt.figure(figsize=(8, 8), facecolor="#1f1f1f00")
-
-    left, width = 0.1, 0.65
-    bottom, height = 0.1, 0.65
-
-    rect_scatter = [left, bottom, width, height]
-
-    ax = fig.add_axes(rect_scatter)
-
-    ax.plot(partidas_agrupadas["score2"], c=colors[3])
-    ax.plot(partidas_agrupadas["score1"], c=colors[1])
-
-    ax.legend(['Jogador 1', 'Jogador 2'])
 
 
