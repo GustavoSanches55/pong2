@@ -17,7 +17,25 @@ def modos(request):
     return render(request,"menu/modos.html")
 
 def leaderboards(request):
-    return render(request,"menu/leaderboard.html")
+    
+    item = Jogador.objects.all().values()
+    jogadores = pd.DataFrame(item)
+
+    item2 = Partida.objects.all().values()
+    partidas = pd.DataFrame(item2)
+
+    por_jogador = partidas.groupby('p1').mean().round(2)
+
+    jogadores['media_pontos'] = jogadores.index.map(por_jogador['score1'])
+
+    leaderboard = jogadores.sort_values(['mmr','media_pontos'], ascending=False)
+
+    colunas = ['nome', 'mmr', 'media_pontos']
+    context = {
+        'leaderboard': leaderboard.reset_index()[colunas].to_html(col_space=70,justify='center')
+    }
+
+    return render(request,"menu/leaderboard.html", context)
 
 def login(request):
     global logged
