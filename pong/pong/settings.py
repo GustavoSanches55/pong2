@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'menu',
     'sanches',
-    'kayo'
+    'kayo',
+    'laguardia',
+    'treuke'
 ]
 
 MIDDLEWARE = [
