@@ -16,6 +16,12 @@ body {
   width: fit-content;
 }
 
+.limited-height {
+  max-height: 300px;
+  margin-bottom: 50px;
+  overflow-y: scroll;
+}
+
 .body-center {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -50,10 +56,6 @@ body.body-center {
   .explicacao > div {
     margin-bottom: 20px;
   }
-}
-
-.loading {
-  cursor: wait !important;
 }
 
 .img-plot {
@@ -219,7 +221,7 @@ body.body-center {
   }
 }
 
-.loading-bt {
+.loading-bt:not(.alert-bt) {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(3%, #c4ffff), color-stop(8%, #0059ff), color-stop(92%, #5f00cc), color-stop(97%, #c4ffff));
   background-image: linear-gradient(to right, #c4ffff 3%, #0059ff 8%, #5f00cc 92%, #c4ffff 97%);
   -webkit-animation: loading;
@@ -230,11 +232,12 @@ body.body-center {
           animation-iteration-count: infinite;
   -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
           transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  cursor: wait !important;
   -webkit-transition-duration: 400ms;
           transition-duration: 400ms;
 }
 
-.loading-bt:hover {
+.loading-bt:not(.alert-bt):hover {
   color: white;
 }
 

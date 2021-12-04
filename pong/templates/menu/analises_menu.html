@@ -7,7 +7,7 @@
 <body class="container-fluid">
 
     <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
-    {% include 'menu/nav.html' with includeExplanation=False %}
+    {% include 'menu/nav.html' %}
     
 
     <!--Botões para a seleção direta dos modos de jogo-->
@@ -30,7 +30,7 @@
     <script>
         bt=document.getElementsByClassName("menu-bt")
         for (b=0;b<(bt.length);b++){
-            bt[b].addEventListener("click",function(e){e.target.classList.add("loading-bt"); e.inner_text = "Carregando";})
+            bt[b].addEventListener("click",function(e){e.target.classList.add("loading-bt"); e.target.text = "Carregando...";})
         }
     </script>
 </body>

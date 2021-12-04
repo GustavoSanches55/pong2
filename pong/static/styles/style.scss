@@ -55,6 +55,11 @@ $translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
 .tabela-fit {
 	width: fit-content;
 }
+.limited-height{
+	max-height: 300px;
+    margin-bottom: 50px;
+    overflow-y: scroll;
+}
 
 // Css de configuração do body do menu e do login
 .body-center{
@@ -79,10 +84,6 @@ body.body-center{
 	@include for-md-down{
 		margin-bottom: 20px;
 	}
-}
-
-.loading{
-	cursor: wait !important;
 }
 
 .img-plot{

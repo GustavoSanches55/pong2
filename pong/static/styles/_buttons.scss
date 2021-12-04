@@ -138,12 +138,13 @@ $translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
   0%   {background-position: 10% 0%;}
   100%  {background-position: 160% 0%;}
 }
-.loading-bt {
+.loading-bt:not(.alert-bt) {
   background-image: linear-gradient(to right, #c4ffff 3%, #0059ff 8%, #5f00cc 92%, #c4ffff 97%);
   animation: loading;
   animation-duration: 0.8s;
   animation-iteration-count: infinite;
   transition-timing-function:cubic-bezier(1, 0, 0, 1);
+  cursor: wait !important;
   
   &:hover {
     color:  white;
