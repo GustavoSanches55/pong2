@@ -54,6 +54,9 @@ $translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
 
 .tabela-fit {
 	width: fit-content;
+	max-width: 100%;
+	overflow-x: auto;
+	margin-bottom: 20px;
 }
 .limited-height{
 	max-height: 300px;
