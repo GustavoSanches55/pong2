@@ -19,16 +19,16 @@
             <!--Coluna dos botões da página principal-->
             <div class="col-12 col-md-5 menu-item-list align-self-center flex-column">
                 <a class="menu-bt alert-bt" href = "{% url 'notas' %}">Notas</a>
-                <a class="menu-bt" href = "sanches/">Sanches</a>
-                <a class="menu-bt" href = "kayo/">Kayo</a>
-                <a class="menu-bt" href = "{% url 'treuke-analise' %}">Treuke</a>
-                <a class="menu-bt" href = "laguardia/">Laguardia</a>
+                <a class="need_loading menu-bt" href = "sanches/">Sanches</a>
+                <a class="need_loading menu-bt" href = "kayo/">Kayo</a>
+                <a class="need_loading menu-bt" href = "{% url 'treuke-analise' %}">Treuke</a>
+                <a class="need_loading menu-bt" href = "laguardia/">Laguardia</a>
 
             </div>
         </div>
     </div>
     <script>
-        bt=document.getElementsByClassName("menu-bt")
+        bt=document.getElementsByClassName("need_loading")
         for (b=0;b<(bt.length);b++){
             bt[b].addEventListener("click",function(e){e.target.classList.add("loading-bt"); e.target.text = "Carregando...";})
         }

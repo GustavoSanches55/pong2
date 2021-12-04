@@ -15,9 +15,9 @@
         <!--Coluna dos botões da página principal-->
         <div class="col-12 col-md-5 menu-item-list align-self-center flex-column">
             <a class="menu-bt" href = "{% url 'modos' %}"><i class="fas fa-table-tennis"></i> Play Game</a>
-            <a class="menu-bt" href = "{% url 'leaderboards' %}"><i class="fas fa-stream"></i> Leaderboard</a>
+            <a class="menu-bt need_loading" href = "{% url 'leaderboards' %}"><i class="fas fa-stream"></i> Leaderboard</a>
             {% if logged %}
-                <a id="profile-menu-btn" class="menu-bt" href = "{% url 'profile' %}"><i class="fas fa-sign-in-alt"></i> Profile</a>
+                <a id="profile-menu-btn" class="menu-bt need_loading" href = "{% url 'profile' %}"><i class="fas fa-sign-in-alt"></i> Profile</a>
             {% endif %}
             {% if not logged %}
                 <a id="login-menu-btn" class="menu-bt" href = "{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
@@ -29,17 +29,10 @@
     <footer>
         <script src="https://kit.fontawesome.com/a3b17821b3.js" crossorigin="anonymous"></script>
         <script>
-            // Esse script serve apenas para simular o menu sendo diferente para quando alguém 
-            // está logado ou não, alterando a exibição dos botões de login e profile.
-            
-            // const queryString = window.location.search;
-            // const urlParams = new URLSearchParams(queryString);
-            // const sim_logged = urlParams.get('simulate_logged')
-            // if(sim_logged){
-            //     document.getElementById("login-menu-btn").remove()
-            // }else{
-            //     document.getElementById("profile-menu-btn").remove()
-            // }
+            bt=document.getElementsByClassName("need_loading")
+            for (b=0;b<(bt.length);b++){
+                bt[b].addEventListener("click",function(e){e.target.classList.add("loading-bt"); e.target.text = "Carregando...";})
+            }
         </script>
     </footer>
 
