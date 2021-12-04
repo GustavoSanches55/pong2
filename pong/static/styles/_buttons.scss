@@ -101,7 +101,7 @@ $translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
 }
 
 // Alterações que sobrepoem algumas configs do menu-bt para botões vermelhos porém mantém o tamanho
-// usado no botão notas, das análises
+// usado no botão notas das análises
 .alert-bt {
   background-image: $gradiente-vermelho;
 
@@ -113,6 +113,22 @@ $translate-03: translate(0.3em, -0.3em) skew(-10deg, 0deg);
   }
   &:active {
     box-shadow: $box-shadow-vermelho -0.3em 0.3em 2em;
+  }
+}
+
+// Alterações que sobrepoem o menu-bt para botões verdes
+// usado no botão verde das análises
+.green-bt {
+  background-image: linear-gradient(to right, white, rgb(196, 255, 221), rgb(0, 187, 109),rgb(18, 144, 148));
+
+  &:hover{
+      box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em .8em;
+  }
+  &:hover .icon-bt{
+    filter: brightness(11%);
+  }
+  &:active {
+    box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em 2em;
   }
 }
 
