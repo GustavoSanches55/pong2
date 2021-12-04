@@ -41,6 +41,7 @@ def analise(players, matches):
     matches = pd.merge(matches, players, left_on="p1", right_on="index")
 
     # altera o tema
+    plt.style.use('default')
     mpl.rcParams['axes.facecolor'] = "#00000000"
     mpl.rcParams['figure.facecolor'] = "#00000000"
     mpl.rcParams['text.color'] = "white"

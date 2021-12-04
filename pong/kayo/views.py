@@ -36,6 +36,10 @@ def tabela2():
 
 
 def tabelas(request, tabela1 = tabela1, tabela2 = tabela2):
+
+    
+    plt.style.use('default')
+    
     tabela1 = tabela1().head(10)
     tabela2 = tabela2().head(20)
     graf1 = grafico1()
@@ -70,7 +74,7 @@ def grafico1(tabela1 = tabela1):
 
     # Alterações estéticas na plotagem
 
-    sns.set_theme(font_scale=2, style="whitegrid",
+    sns.set_theme(font_scale=1, style="whitegrid",
     rc={"figure.figsize":(6, 10),
         "axes.facecolor": "#1f1f1f",
         "figure.facecolor": "#1f1f1f",
@@ -86,8 +90,8 @@ def grafico1(tabela1 = tabela1):
     figura1.set(ylabel="Tempo (min)")
     figura1.set_title("Tempo médio gasto na plataforma")
     figura1.grid(alpha = 0.2, axis="y")
-    figura1.annotate("34", (-0.6, 32), annotation_clip=False)
-    plt.text(-0.7,-12,"OBS: 34 minutos representa a média total")
+    figura1.annotate("34", (-0.57, 33), annotation_clip=False)
+    plt.text(-0.5,-8,"OBS: 34 minutos representa a média total")
 
     arquivo_nome = "kayo1"
     path = r"static/"+arquivo_nome
@@ -133,7 +137,7 @@ def grafico2(tabela2 = tabela2):
 
     # Alterações estéticas na plotagem
 
-    sns.set_theme(font_scale=2, style="whitegrid",
+    sns.set_theme(font_scale=1, style="whitegrid",
     rc={"figure.figsize": (8, 8),
         "axes.facecolor": "#1f1f1f",
         "figure.facecolor": "#1f1f1f",
@@ -149,8 +153,6 @@ def grafico2(tabela2 = tabela2):
     figura2.set(xlabel = "Categorias", ylabel="Tempo (min)")
     figura2.set_title("Tempo médio por rank")
     figura2.grid(alpha = 0.2, axis="y")
-    figura2.annotate("34", (4.6, 33.3), annotation_clip=False)
-    plt.text(-0.52,-8,"OBS: 34 minutos representa a média total")
     
     arquivo_nome = "kayo2"
     path = r"static/"+arquivo_nome
@@ -188,7 +190,7 @@ def grafico3(tabela2 = tabela2):
 
     # Alterações estéticas na plotagem
 
-    sns.set_theme(font_scale=2, style="whitegrid",
+    sns.set_theme(font_scale=1, style="whitegrid",
     rc={"figure.figsize": (8, 10),
         "axes.facecolor": "#1f1f1f",
         "figure.facecolor": "#1f1f1f",
@@ -204,8 +206,6 @@ def grafico3(tabela2 = tabela2):
     figura3.set(xlabel = "Idades", ylabel="Tempo (min)")
     figura3.set_title("Tempo médio por idade")
     figura3.grid(alpha = 0.2, axis="y")
-    figura3.annotate("34", (2.57, 33.5), annotation_clip=False)
-    plt.text(-0.52,-6,"OBS: 34 minutos representa a média total")
     # Alterações estéticas na plotagem
 
     sns.set_theme(font_scale=2, style="whitegrid",
@@ -224,8 +224,6 @@ def grafico3(tabela2 = tabela2):
     figura3.set(xlabel = "Idades", ylabel="Tempo (min)")
     figura3.set_title("Tempo médio por idade")
     figura3.grid(alpha = 0.2, axis="y")
-    figura3.annotate("34", (2.57, 33.5), annotation_clip=False)
-    plt.text(-0.52,-6,"OBS: 34 minutos representa a média total")
     
     arquivo_nome = "kayo3"
     path = r"static/"+arquivo_nome
