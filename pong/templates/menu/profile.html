@@ -13,7 +13,7 @@
     <!--Exibição de perfil do usuário logado-->
     <div class="">
     
-        <img id= "rank-image" src = "{% static 'img/gold_rank.png'%}" alt="rank image" draggable="false">
+        <img id= "rank-image" src = "{% static rank_img %}" alt="rank image" draggable="false">
 
         <div class = "row justify-content-center">
             <div class = "col-12 col-md-5">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="col-12 col-md-5">
-            <h1 > Rank: Gold II</h1>
+            <h1 > Rank: {{ player_rank }} </h1>
             </div>
         </div>
 
@@ -80,7 +80,7 @@
                                 Tempo de Jogo:
                             </td>
                             <td>
-                                158h
+                                {{ tempo_jogo }} min
                             </td>
                         </tr>
                     </table>
