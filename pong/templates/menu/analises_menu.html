@@ -18,11 +18,11 @@
 
             <!--Coluna dos botões da página principal-->
             <div class="col-12 col-md-5 menu-item-list align-self-center flex-column">
-                <a class="menu-bt alert-bt" href = "{% url 'notas' %}"><i class="fas fa-stream"></i> Notas</a>
-                <a class="menu-bt" href = "sanches/"><i class="fas fa-table-tennis"></i> Sanches</a>
-                <a class="menu-bt" href = "kayo/"><i class="fas fa-stream"></i> Kayo</a>
-                <a class="menu-bt" href = "{% url 'treuke-analise' %}"><i class="fas fa-stream"></i> Treuke</a>
-                <a class="menu-bt" href = "laguardia/"><i class="fas fa-stream"></i> Laguardia</a>
+                <a class="menu-bt alert-bt" href = "{% url 'notas' %}">Notas</a>
+                <a class="menu-bt" href = "sanches/">Sanches</a>
+                <a class="menu-bt" href = "kayo/">Kayo</a>
+                <a class="menu-bt" href = "{% url 'treuke-analise' %}">Treuke</a>
+                <a class="menu-bt" href = "laguardia/">Laguardia</a>
 
             </div>
         </div>
@@ -30,7 +30,7 @@
     <script>
         bt=document.getElementsByClassName("menu-bt")
         for (b=0;b<(bt.length);b++){
-            bt[b].addEventListener("click",function(e){e.target.classList.add("loading")})
+            bt[b].addEventListener("click",function(e){e.target.classList.add("loading-bt"); e.inner_text = "Carregando";})
         }
     </script>
 </body>

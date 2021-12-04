@@ -182,8 +182,8 @@ body.body-center {
 }
 
 .green-bt {
-  background-image: -webkit-gradient(linear, left top, right top, from(white), color-stop(#c4ffdd), color-stop(#00bb6d), to(#129094));
-  background-image: linear-gradient(to right, white, #c4ffdd, #00bb6d, #129094);
+  background-image: -webkit-gradient(linear, left top, right top, from(white), color-stop(#c4ffdd), color-stop(#00c975), to(#00684b));
+  background-image: linear-gradient(to right, white, #c4ffdd, #00c975, #00684b);
 }
 
 .green-bt:hover {
@@ -199,6 +199,43 @@ body.body-center {
 .green-bt:active {
   -webkit-box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em 2em;
           box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em 2em;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    background-position: 10% 0%;
+  }
+  100% {
+    background-position: 160% 0%;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 10% 0%;
+  }
+  100% {
+    background-position: 160% 0%;
+  }
+}
+
+.loading-bt {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(3%, #c4ffff), color-stop(8%, #0059ff), color-stop(92%, #5f00cc), color-stop(97%, #c4ffff));
+  background-image: linear-gradient(to right, #c4ffff 3%, #0059ff 8%, #5f00cc 92%, #c4ffff 97%);
+  -webkit-animation: loading;
+          animation: loading;
+  -webkit-animation-duration: 0.8s;
+          animation-duration: 0.8s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-transition-timing-function: cubic-bezier(1, 0, 0, 1);
+          transition-timing-function: cubic-bezier(1, 0, 0, 1);
+  -webkit-transition-duration: 400ms;
+          transition-duration: 400ms;
+}
+
+.loading-bt:hover {
+  color: white;
 }
 
 .icon-bt {

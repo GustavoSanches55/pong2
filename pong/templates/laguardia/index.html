@@ -5,20 +5,28 @@
     {% include 'menu/head.html'%}
 
 <body class="container-fluid">
-    {% include 'menu/nav.html' with backlink='menu/analises_menu' %}
+    {% include 'menu/nav.html' with backLink='analises_menu' %}
 
 
     <!-- Introdução -->
     <hr>
     <div class="row justify-content-center">
+    <div class="col-8">
         <h1> ~ Análise Laguardia ~ </h1>
         <br>
         <h2><i> "Como o rank do jogador se correlaciona com outras variáveis?" </i></h2>
         <br>
         Cada integrante do grupo optou por focar suas análises em um assunto específico e, dessa forma,
-        eu centrei minha atenção para o Rank do jogador e suas possíveis correlações. Sendo assim,
-        um bom início é olharmos os dados que temos em mãos, como a tabela de jogadores e a tabela de partidas:
+        eu centrei minha atenção para o rank do jogador e suas possíveis correlações. Essa é uma pergunta
+        interessante para o negócio pois ela nos permite tentar prever o rank de algum usuário com base em
+        outras estatísticas, tornando possível: <br>
+        A criação de um sistema de classificação de rank inicial automático
+        (sem que todo jogador tenha que começar do rank 0 para ser corretamente classificado apenas após muitas partidas); <br>
+        E, principalmente, a detecção de hackers, caso o rank de um jogador esteja extremamente incompatível com suas
+        outras informações. <br>
+        Sendo assim, um bom início é olharmos os dados que temos em mãos, como a tabela de jogadores e a tabela de partidas:
         <br><br>
+    </div>
     </div>
     <div class="row justify-content-center">
         <h3>Tabela de Jogadores</h3>
@@ -33,80 +41,86 @@
             </div>
             <i>Tabela com os dados de cada partida, com um join na tabela de jogadores pelo player1 (será útil para as análises no futuro).</i>
     <br><br>
+    <div class="row justify-content-center">
+    <div class="col-8">
     É importante notar que esses dados foram gerados artificialmente utilizando Pandas e Numpy e, portanto, 
     não representam necessariamente nenhum cenário real.
+    </div>
     </div>
 
 
     <!-- Gráfico 1 -->
     <hr>
     <div class="row justify-content-center">
+    <div class="col-8">
         <h1> Gráfico 1 - Histograma dos Ranks</h1>
         <br>
         Com esses dados em mãos, podemos começar o trabalho. Uma primeira análise de grande importância
         é verificarmos a frequência da distribuição dos ranks dos jogadores. O gráfico a seguir nos revela
         essa informação:
         <br>
-        <img class="img-fluid align-center tabela-fit" src="{% static 'img/laguardia1.png'%}" alt="Histograma dos ranks" draggable="false">
-        {{ graf1|safe }}
-        <br>
+        <img class="img-fluid align-center tabela-fit" src="{% static graf1 %}" alt="Histograma dos ranks" draggable="false">
+        <br><br>
         O que observamos é que os ranks tem uma distribuição bem próxima da normal, com excessão dos pontos extremos.
         Isso occore porque os dados de rank foram gerados usando a função do numpy de criação de uma distribuição normal, porém
         quando o valor excedia 100 era definido em 100 e quando era inferior a 0, era definido 0. Logo, os valores 0 e 100
         passaram a representar a soma das frequências de todos os números que extrapolavam o nosso escopo e, portanto,
         apresentaram essas grandes quantidades de ocorrências.
     </div>
+    </div>
 
 
     <!-- Gráfico 2 -->
     <hr>
     <div class="row justify-content-center">
+    <div class="col-8">
         <h1> Gráfico 2 - Correlação Rank e Idade</h1>
         <br>
         Além disso, outra pergunta interessante é se a habilidade de um jogador (traduzida no rank) tem alguma correlação
         com a sua idade. Para responder essa questão, é mais conveniente utilizarmos um scatter plot, como na figura seguinte:
         <br>
-        <img class="img-fluid align-center tabela-fit" src="{% static 'img/laguardia2.png'%}" alt="Scatter entre rank e idade" draggable="false">
-        {{ graf2|safe }}
-        <br>
+        <img class="img-fluid align-center tabela-fit" src="{% static graf2 %}" alt="Scatter entre rank e idade" draggable="false">
+        <br><br>
         Nesse gráfico, observamos que sim, há uma correlação positiva entre idade e rank, uma vez que os pontos se organizam
         em uma diagonal ascendente. Mais uma vez, essa informação bate com a maneira como os dados foram criados no Numpy, o 
         que indica que nossa plotagem está funcionando corretamente.
+    </div>
     </div>
 
 
     <!-- Gráfico 3 -->
     <hr>
     <div class="row justify-content-center">
+    <div class="col-8">
         <h1> Gráfico 3 - Correlação Vitórias e Rank</h1>
         <br>
-        Nosso próximo gráfico será um aprimoramento do anterior. Cada ponto aqui representa uma partida jogada pelo Player 1.
+        Nosso próximo gráfico será um aprimoramento do anterior. Cada ponto (dessa vez, com transparência) representa uma partida jogada pelo Player 1.
         No eixo x continuamos com o rank do Player 1 e no eixo y continuamos com a idade do Player 1. A novidade aqui é a cor,
         onde o ponto roxo indica que o Player 1 saiu vitorioso, e o ponto laranja indica que o Player 1 empatou ou perdeu. Sob
         essas circunstâncias, a figura nova que obtemos é a que segue:
         <br>
-        <img class="img-fluid align-center tabela-fit" src="{% static 'img/laguardia3.png'%}" alt="Scatter de vitórias e rank" draggable="false">
-        {{ graf3|safe }}
-        <br>
+        <img class="img-fluid align-center tabela-fit" src="{% static graf3 %}" alt="Scatter de vitórias e rank" draggable="false">
+        <br><br>
         Aqui, observamos que os jogadores de rank maior (e consequentemente de idade maior) têm uma quantidade de vitórias muito
         maior que os jogadores de rank menor, o que exatamente de acordo com o que esperávamos observar.
+    </div>
     </div>
 
 
     <!-- Gráfico 4 -->
     <hr>
     <div class="row justify-content-center">
+    <div class="col-8">
         <h1> Gráfico 4 - Correlação Vitórias e Rank dos 2 Players</h1>
         <br>
         Por último, elaboraremos um gráfico que compara o rank dos dois jogadores da partida e exibe o resultado como cor. Dessa
         vez, o eixo x é o rank do Player 1, o eixo y é o rank do Player 2, a cor roxa denota uma vitória do Player 1 e a cor laranja
         marca uma derrota ou empate do Player 1. É importante lembrar que, para que esse gráfico pudesse ser montado, a tabela de
-        partidas teve que passar por outro merge, ligando a ela os dados do Player 2 também (porém, como o resultado é extramente
+        partidas teve que passar por outro merge, ligando a ela os dados do Player 2 também (porém, como o resultado é extremamente
         prevísivel, pouparei o leitor dessa nova tabela). Essa última figura é a que segue abaixo:
         <br>
-        <img class="img-fluid align-center tabela-fit" src="{% static 'img/laguardia4.png'%}" alt="Scatter de vitórias e rank de cada jogador" draggable="false">
-        {{ graf4|safe }}
-        <br>
+        <img class="img-fluid align-center tabela-fit" src="{% static graf4 %}" alt="Scatter de vitórias e rank de cada jogador" draggable="false">
+        <br><br>
         Novamente, começamos notando uma grande concentração de pontos no centro do gráfico (devido a distribuição normal) e outra
         grande concetração nas bordas (devido a limitação do alcance do rank). <br>
         Mais do que isso, percebemos que os nossos pontos se organizam de maneira bem definida de acordo com a diferença de ranks,
@@ -114,6 +128,7 @@
         outra parte abaixo da diagonal (rank 2 < rank 1) é expressivamente roxa (vitória 1). Um cenário como esse é especialmente
         interessante para a aplicação de algoritmos de machine learning - como, por exemplo, regressão logísitca - pois ele indica
         ser fácilmente previsível.
+    </div>
     </div>
 </body>
 
