@@ -2,8 +2,9 @@ from django.shortcuts import render
 from menu.models import Jogador, Partida
 import pandas as pd
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 
 def index(request):
     db_values = Jogador.objects.all().values()
@@ -71,12 +72,12 @@ def index(request):
     return render(request,"treuke/analise_treuke.html", context=mydict)
 
 def load_mpl_plot_style_params():
-    mpl.rcParams['axes.facecolor'] = "#FFFFFF00"
-    mpl.rcParams['figure.facecolor'] = "#FFFFFF00"
-    mpl.rcParams['text.color'] = "white"
-    mpl.rcParams['axes.labelcolor'] = "white"
-    mpl.rcParams['xtick.color'] = "white"
-    mpl.rcParams['ytick.color'] = "white"
+    matplotlib.rcParams['axes.facecolor'] = "#FFFFFF00"
+    matplotlib.rcParams['figure.facecolor'] = "#FFFFFF00"
+    matplotlib.rcParams['text.color'] = "white"
+    matplotlib.rcParams['axes.labelcolor'] = "white"
+    matplotlib.rcParams['xtick.color'] = "white"
+    matplotlib.rcParams['ytick.color'] = "white"
 
 def plot_dist_derrotas(data,path):
     plt.hist(data,50, facecolor="#254bb1")
