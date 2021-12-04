@@ -46,18 +46,26 @@ def index(request):
 
     path="plots/treuke_fig_1"
     plot_dist_derrotas(df_players["derrotas"],path)
-    dist_derrotas = path+".png"
+    fig_dist_derrotas = path+".png"
 
     path="plots/treuke_fig_2"
-    plot_idade_sucesso(df_players["idade"],df_players["perc_vit"],path)
+    plot_scatter(df_players["idade"],df_players["perc_vit"],path,"idade")
     fig_idade_sucesso = path+".png"
+
+    path="plots/treuke_fig_3"
+    plot_scatter(df_players["mmr"],df_players["perc_vit"],path,"mmr")
+    fig_mmr_sucesso = path+".png"
+
+    path="plots/treuke_fig_4"
+    plot_mmr_tempo(df_matches_with_draw,df_players, path)
+    fig_mmr_tempo = path+".png"
 
     mydict = {
         "df_derrotas": df_derrotas.to_html(col_space=70,justify='center'),
-        "dist_derrotas": dist_derrotas,
+        "fig_dist_derrotas": fig_dist_derrotas,
         "fig_idade_sucesso": fig_idade_sucesso,
-        "df_matches": df_matches.head(10).to_html(col_space=70,justify='center'),
-        "df_players": df_players.head(10).to_html(col_space=70,justify='center')
+        "fig_mmr_sucesso": fig_mmr_sucesso,
+        "fig_mmr_tempo": fig_mmr_tempo
     }
     
     return render(request,"treuke/analise_treuke.html", context=mydict)
@@ -79,11 +87,29 @@ def plot_dist_derrotas(data,path):
     plt.savefig(path)
     plt.close()
 
-def plot_idade_sucesso(idade,perc_vit,path):
-    plt.scatter(idade,perc_vit, color="#52219a")
-    plt.xlabel('Idade')
+def plot_scatter(valor,perc_vit,path,assunto):
+    plt.scatter(valor,perc_vit, color="#52219a")
+    plt.xlabel(assunto)
     plt.ylabel('Taxa de vitoria')
-    plt.title('Relação entre idade e sucesso')
+    plt.title('Relação entre '+assunto+' e sucesso')
+    path = r"static/" + path
+    plt.savefig(path)
+    plt.close()
+
+def plot_mmr_tempo(matches, players, path):
+    df_matches = matches.copy()
+    df = pd.merge(df_matches, players.reset_index(), left_on="p1", right_on="index")[["p1","p2","score1","score2","tempo","nome","mmr"]]
+    df.rename(columns={"nome":"p1_nome","mmr":"p1_mmr"}, inplace=True)
+    df = pd.merge(df, players.reset_index(), left_on="p2", right_on="index")[["p1","p2","score1","score2","tempo","p1_nome","p1_mmr","nome","mmr"]]
+    df.rename(columns={"nome":"p2_nome","mmr":"p2_mmr"}, inplace=True)
+    df["diferenca"] = abs(df["p1_mmr"] - df["p2_mmr"])
+
+    plt.xlabel('Tempo em segundos')
+    plt.ylabel('Diferença de mmr')
+    plt.title('Duração de partidas X desnível de mmr')
+
+    plt.scatter(df["tempo"],df["diferenca"],color="#254bb1" )
+    
     path = r"static/" + path
     plt.savefig(path)
     plt.close()

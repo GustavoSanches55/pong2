@@ -15,22 +15,54 @@
             <br>
             <div class="col-6">
                 <h2>O quão frustrante o jogo pode ser para certos jogadores?</h2>
-                <p>O objetivo é analisar as quantias de derrotas e o tempo de jogo, para poder ter algum insight sobre essa pergunta.</p>
+                <p>O objetivo é analisar as quantias de derrotas e o tempo de jogo, 
+                    para poder ter algum insight sobre essa pergunta, 
+                    e saber o que pode ser feito para tornar o jogo mais agradável aos jogadores, 
+                    caso ele esteja realmente frustrante 
+                    (o jogador pode não estar sendo recompensado pelo seu esforço e deixar de jogar o jogo).</p>
             </div>
         </div>
 
         <br><hr><br>
-        
-        <div class="row justify-content-center">
-            <div class = "tabela-fit">
-            {{ df_derrotas|safe }}
-            </div>
-        </div>
-        <p>Encontramos então a seleção de jogadores que mais perderam, o lider deles é curiosamente o jogador que também tem o maior numero de partidas... E ele perdeu todas... Pobre Patata414.</p>
-        <img src="{% static dist_derrotas %}">
+        <main class="container justify-content-center">
+            <div class="row justify-content-center">
+                <div class = "tabela-fit">
+                {{ df_derrotas|safe }}
+                </div>
+            
+            
+                <div>
+                    <p>Encontramos então a seleção de jogadores que mais perderam, o lider deles é curiosamente o jogador que também tem o maior numero de partidas... E ele perdeu todas... Pobre Patata414.</p>
+                    <img class="img-plot" src="{% static fig_dist_derrotas %}" alt="Grafico de distribuicao de derrotas">
+                </div>
+                <div>
+                    <p>Uma possibilidade é que algo como a idade se relacione ao baixo sucesso, pois elas estão proximas na tabela mostrada.</p>
+                    <img class="img-plot" src="{% static fig_idade_sucesso %}" alt="Grafico comparando idade e sucesso">
+                    <p>A partir dessa visualização, é possível dizer que a idade não possui influencia considerável para a taxa de sucesso.</p>
+                </div>
 
-        <p>Uma possibilidade é que algo como a idade se relacione ao baixo sucesso, pois elas estão proximas na tabela mostrada.</p>
-        <img src="{% static fig_idade_sucesso %}">
+                <div>
+                    <p>Outra possibilidade seria a relação entre mmr e sucesso, o ideal é que players com mmr semelhante joguem mais e subam mmr caso ganhem, mas pode ser que esse sistema está falho (ele está falho pois as partidas foram geradas de forma aleatória)</p>
+                    <img class="img-plot" src="{% static fig_mmr_sucesso %}" alt="Grafico comparando idade e sucesso">
+                    <p>O mmr está tendo uma influencia maior na taxa de sucesso, então é o valor mais considerável.</p>
+                </div>
+
+                <div>
+                    <p>Como está falho o sistema de mmr, podemos analisar a duração de partidas no caso de diferenças de mmr</p>
+                    <img class="img-plot" src="{% static fig_mmr_tempo %}" alt="Grafico comparando mmr e duração de partida">
+                    <p>Temos uma linha vertical sobre o 600, pois 10 minutos é o tempo normal de uma partida, mas podemos perceber que com diferenças mais altas, ocorre uma derrota muita rápida do oponente por limite de pontos. E em partidas equilibradas, é comum ir para a prorrogação e demorar mais.
+                    (além disso tem um ponto alí que é algum erro na base, mas poderia ser um hacker identificado).</p>
+                </div>
+
+                <div>
+                    <p>Levando em consideração que as partidas estão demorando, em alguns casos, mais de 10min, e que o nosso jogador, 
+                    Pata414 jogou e perdeu 16, podemos dizer que o jogo pode estar sendo muito frustrante para alguns jogadores, 
+                    é claro que a maior parte das derrotas são contra oponentes de mmr maior, o que pode implicar em uma partida mais curta,
+                    mas mesmo com isso em consideração, pode-se dizer que é necessário reformular a duração de partidas e também o 
+                    sistema de matchmaking para considerar o mmr, para diminuir a frustração dos jogadores com o jogo.</p>
+                </div>
+            </div>
+        </main>
     </main>
 </body>
 
