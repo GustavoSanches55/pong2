@@ -20,9 +20,28 @@
             }
         }
     }
+    .rotate{
+        animation: rotate 1s linear infinite;
+    }
+    @keyframes rotate {
+        0%{
+            transform: rotate(0deg);
+            filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+            filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(360deg);
+        }
+
+    }
     .user-picture{
         height: 200px;
         width: 100%;
         font-size: 150px;
+        min-height: 200px;
+        transition: all 0.2s;
+    }
+    .warn{
+        color: red;
     }
 }

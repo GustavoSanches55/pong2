@@ -553,10 +553,52 @@ body.body-center {
   cursor: pointer;
 }
 
+.login_screen .rotate {
+  -webkit-animation: rotate 1s linear infinite;
+          animation: rotate 1s linear infinite;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(0deg);
+            filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    -webkit-filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(360deg);
+            filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(0deg);
+            filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    -webkit-filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(360deg);
+            filter: invert(45%) sepia(1) saturate(1486%) hue-rotate(160deg) contrast(101%) hue-rotate(360deg);
+  }
+}
+
 .login_screen .user-picture {
   height: 200px;
   width: 100%;
   font-size: 150px;
+  min-height: 200px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.login_screen .warn {
+  color: red;
 }
 
 #nav_superior {

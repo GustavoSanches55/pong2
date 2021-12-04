@@ -24,6 +24,7 @@ def leaderboards(request):
 
 def login(request):
     global logged
+    msg = ""
     if(logged):
         url = reverse("profile")
         return HttpResponseRedirect(url)
@@ -41,14 +42,17 @@ def login(request):
                 url = reverse("index")
                 return HttpResponseRedirect(url)
             else:
-                print("senha errada")
+                msg = "<span class='warn'>Senha inválida</span>"
         else:
-            print("Usuario não existente")
-
+            msg = "<span class='warn'>Esse usuário não existe</span>"
+            if(request.POST["inputUser"]=="do a barrel roll" and request.POST["inputPassword"]=="easteregg"): msg='<script>document.getElementsByClassName("fa-user-circle")[0].classList.add("rotate")</script>'
     lista_usuarios = Jogador.objects.all().values()
     lista_usuarios = pd.DataFrame(lista_usuarios)[["nome","hash_senha"]].rename(columns={"hash_senha":"senha"})
     lista_usuarios = lista_usuarios.to_html(col_space=70,justify='center')
-    mydict={"usuarios":lista_usuarios}
+    mydict={
+        "usuarios":lista_usuarios,
+        "feedback_msg":msg
+        }
     return render(request,"menu/login.html",context=mydict)
     
 def modos_explicacao(request):
