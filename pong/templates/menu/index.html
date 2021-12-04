@@ -20,10 +20,9 @@
                 <a id="profile-menu-btn" class="menu-bt" href = "{% url 'profile' %}"><i class="fas fa-sign-in-alt"></i> Profile</a>
             {% endif %}
             {% if not logged %}
-            <a id="login-menu-btn" class="menu-bt" href = "{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a id="login-menu-btn" class="menu-bt" href = "{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
             {% endif %}
             <a class="menu-bt green-bt" href = "{% url 'analises_menu' %}"><i class="fas fa-stream"></i> Análises</a>
-            <p>logged-in: {{logged}}</p>
         </div>
 </div>
 
