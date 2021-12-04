@@ -1,12 +1,17 @@
+from django.db.models.fields import EmailField
 from django.shortcuts import render, reverse
 from django.http import HttpResponse, Http404
 from django.http.response import HttpResponseRedirect
 import pandas as pd
 from menu.models import Jogador, Partida
+from django.db.models import Q #permitir o OU na busca no banco
+
+logged=False
 
 # Create your views here.
 def index(request):
-    return render(request,"menu/index.html")
+    global logged
+    return render(request,"menu/index.html",context={"logged":logged})
 
 def modos(request):
     return render(request,"menu/modos.html")
@@ -15,7 +20,32 @@ def leaderboards(request):
     return render(request,"menu/leaderboard.html")
 
 def login(request):
-    return render(request,"menu/login.html")
+    if(request.POST):
+        print("ok")
+        lembrar = request.POST["remember"]=="lembrar"
+        if lembrar:
+            print("lembrando")
+        try:
+            user = Jogador.objects.get(Q(nome=request.POST["inputUser"]) | Q(email=request.POST["inputUser"]))
+        except: 
+            user = False
+        if user:
+            if user.hash_senha == request.POST["inputPassword"]:
+                print("logado")
+                url = reverse("index")
+                global logged
+                logged = user
+                return HttpResponseRedirect(url)
+            else:
+                print("senha errada")
+        else:
+            print("Usuario não existente")
+
+    lista_usuarios = Jogador.objects.all().values()
+    lista_usuarios = pd.DataFrame(lista_usuarios)[["nome","hash_senha"]].rename(columns={"hash_senha":"senha"})
+    lista_usuarios = lista_usuarios.to_html(col_space=70,justify='center')
+    mydict={"usuarios":lista_usuarios}
+    return render(request,"menu/login.html",context=mydict)
     
 def modos_explicacao(request):
     return render(request,"menu/modos_explicacao.html")

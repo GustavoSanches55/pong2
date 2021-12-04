@@ -6,18 +6,19 @@
     {% include 'menu/nav.html' %}
     <content class="body-center">
         <!--Campo de preenchimento de login do usuário-->
-        <form class="signin">
+        <form class="signin" method="POST">{% csrf_token %}
             <div class="user-picture text-center">
                 <i class="far fa-user-circle"></i>
             </div>
             <h1 class="h3 mb-3">Login</h1>
             <label for="inputUser" class="sr-only">Nome de usuário</label>
-            <input id="inputUser" type="text" class="form-control" placeholder="Seu nome de usuário" required autofocus>
+            <input name="inputUser" id="inputUser" type="text" class="form-control" placeholder="Seu nome de usuário" required autofocus>
             <label for="inputPassword" class="sr-only">Senha</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+            <input name="inputPassword"  type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="remember-me">
+                    <input name="remember" type="hidden" value="no">
+                    <input type="checkbox" value="lembrar" onclick="this.previousElementSibling.value='lembrar'">
                     Lembrar de mim
                 </label>
             </div>
@@ -28,6 +29,12 @@
         <!-- <a href="index.html?simulate_logged=y">Simular Login</a>
         <p>(Vai deixar você acessar a página Profile através do menu)</p>
          -->
+         <p>Como você está em uma aplicação de teste, você pode acessar todas as contas:</p>
+         <div class="row justify-content-center">
+            <div class = "tabela-fit limited-height">
+            {{ usuarios|safe }}
+            </div>
+        </div>
         <footer>
             <script src="https://kit.fontawesome.com/a3b17821b3.js" crossorigin="anonymous"></script>
         </footer>
