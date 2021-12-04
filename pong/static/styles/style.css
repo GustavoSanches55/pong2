@@ -477,6 +477,50 @@ body.body-center {
 #rank-image {
   width: 250px;
   height: 250px;
+  -webkit-animation: rank_animation 3s ease-in infinite;
+          animation: rank_animation 3s ease-in infinite;
+}
+
+@-webkit-keyframes rank_animation {
+  0% {
+    -webkit-filter: brightness(1);
+            filter: brightness(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-filter: brightness(1.1);
+            filter: brightness(1.1);
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  100% {
+    -webkit-filter: brightness(1);
+            filter: brightness(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes rank_animation {
+  0% {
+    -webkit-filter: brightness(1);
+            filter: brightness(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-filter: brightness(1.1);
+            filter: brightness(1.1);
+    -webkit-transform: scale(1.02);
+            transform: scale(1.02);
+  }
+  100% {
+    -webkit-filter: brightness(1);
+            filter: brightness(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
 }
 
 .login_screen .signin {

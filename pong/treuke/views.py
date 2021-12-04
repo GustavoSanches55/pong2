@@ -6,8 +6,11 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.style.use('default')
+matplotlib.rcParams.update(matplotlib.rcParamsDefault)
 
 def index(request):
+    plt.style.use('default')
+    matplotlib.rcParams.update(matplotlib.rcParamsDefault)
     db_values = Jogador.objects.all().values()
     df_players = pd.DataFrame(db_values)
     df_players = df_players[["nome","mmr","idade","email"]]
@@ -73,6 +76,7 @@ def index(request):
     return render(request,"treuke/analise_treuke.html", context=mydict)
 
 def load_mpl_plot_style_params():
+    matplotlib.rcParams.update(matplotlib.rcParamsDefault)
     matplotlib.rcParams['axes.facecolor'] = "#FFFFFF00"
     matplotlib.rcParams['figure.facecolor'] = "#FFFFFF00"
     matplotlib.rcParams['text.color'] = "white"

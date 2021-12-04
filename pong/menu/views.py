@@ -11,7 +11,10 @@ logged=False
 # Create your views here.
 def index(request):
     global logged
-    return render(request,"menu/index.html",context={"logged":str(logged)})
+    if(request.POST):
+        if("logout" in request.POST):
+            logged = False
+    return render(request,"menu/index.html",context={"logged":logged})
 
 def modos(request):
     return render(request,"menu/modos.html")
@@ -25,10 +28,9 @@ def login(request):
         url = reverse("profile")
         return HttpResponseRedirect(url)
     if(request.POST):
-        print("ok")
         lembrar = request.POST["remember"]=="lembrar"
         if lembrar:
-            print("lembrando")
+            print("Infelizmente a opcao de lembrar nao esta implementada")
         try:
             user = Jogador.objects.get(Q(nome=request.POST["inputUser"]) | Q(email=request.POST["inputUser"]))
         except: 

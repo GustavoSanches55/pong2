@@ -11,8 +11,7 @@
     {% include 'menu/nav.html' %}
 
     <!--Exibição de perfil do usuário logado-->
-    <div class="">
-    
+    <div>
         <img id= "rank-image" src = "{% static rank_img %}" alt="rank image" draggable="false">
 
         <div class = "row justify-content-center">
@@ -87,6 +86,10 @@
                 </div>
              </div>
         </div>
+        <form action="." method="POST">{% csrf_token %}
+            <input type="hidden" name="logout" value="logout">
+            <button class="menu-bt alert-bt text-center" type="submit">LogOut</button>
+        </form>
     </div>
 </body>
 </html>
