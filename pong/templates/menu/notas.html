@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    {% include 'menu/head.html'%}
+
+<body class="container-fluid">
+
+    <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
+    {% include 'menu/nav.html' with includeExplanation=False %}
+    
+    <div class="container-fluid vertical-center">
+        <div class="row justify-content-md-center container-fluid ">
+
+            <div class="col-12 col-md-5 menu-item-list align-self-center flex-column">
+                <ul>
+                    <li>Os dados utilizados foram gerados artificialmente utilizando Pandas e Numpy (e um pouco do
+                    suor do Kayo, pra escrever 200 nicks diferentes). </li>
+                    <li>O joguinho de Pong agora foi atualizado e está 231.7% mais divertido. </li>
+                    <li>As imagens dos gráficos estão sendo puxadas de pngs do static e não do próprio código
+                        pois a exportação saia com as configurações visuais muito diferentes do código original.
+                    (Pode ser removida)</li>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

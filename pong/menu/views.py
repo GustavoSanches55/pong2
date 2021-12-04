@@ -26,6 +26,9 @@ def profile(request):
 def analises_menu(request):
     return render(request, "menu/analises_menu.html")
 
+def notas(request):
+    return render(request, "menu/notas.html")
+
 def jogo(request):
     return render(request, "PONG/PONG.html")
 
