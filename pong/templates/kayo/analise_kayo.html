@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    {% include 'menu/head.html'%}
+
+<body class="container-fluid">
+    <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
+    {% include 'menu/nav.html' with backlink='menu/analises_menu' %}
+
+<hr>
+    <div class="row justify-content-center">
+        <h1>Analises Kayo:</h1>
+        <br>
+        <div class="col-6">
+          Introdução<br>
+          As seguintes análises a serem apresentadas responderão perguntas como:<br>
+          <ul>
+            <li>Tempo de engajamento pelos jogadores na plataforma</li>
+            <li>Tempo empregado no jogo por rankings</li>
+            <li>Tempo empregado no jogo por idades</li>
+          </ul>
+        </div>
+    </div>
+
+    <br><hr><br>
+
+    <h1 class="h3 mb-3">Primeira tabela para análises:</h1>
+
+    <div class="row justify-content-center">
+        <div class = "tabela-fit">
+        {{ score1_tempo|safe }}
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="row justify-content-center">
+        <br>
+        <ul class = "col-6">
+          <li>p1: Id de cada player</li>
+          <li>score1: Score de cada player</li>
+          <li>tempo_s: Tempo empregado na partida</li>
+        </ul>
+    </div>
+    Soma total do tempo gasto na plataforma pela união de todos os players:<br>    
+    19663.0 mins ou 328.0 horas por dia
+
+    <br>
+
+    <br><hr><br>
+
+      <div class="row justify-content-center">
+          <div class="col-12 col-md-5 align-self-center">
+              <img class="img-fluid align-center" src="{% static 'img/grafico1_kayo.png'%}" alt="Grafico 1 kayo" draggable="false">
+          </div>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          O gráfico representa uma amostra a média de todos os indivíduos que jogaram nas últimas 24 horas.
+          Com isso, perceba a grande maioria das pessoas permanecem engajadas na plataforma por tempos entre
+          20 minutos e pouco mais que 40 minutos, sendo 10 minutos o tempo padrão de um jogo para terminar caso
+          a pontuação máxima de 10 pontos não seja alcançada. Em contraste com mídias socias, onde cada usuário
+          fica 2:24 h por dia em média, os jogadores tem gastado aproximadamente 20 % do mesmo tempo jogando,
+          uma grande comparação levando-se em conta que aquelas mídias são administradas por empresas notáveis.
+          Dessa maneira, para uma plataforma nova e independente os tempos tem apresentado resultados positivos no geral.
+            
+        </div>
+      </div>
+
+    <br><hr><br>
+
+    <h1 class="h3 mb-3">Segunda tabela para análises:</h1>
+
+    <div class="row justify-content-center">
+        <div class = "tabela-fit">
+        {{ rank_ST|safe }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row justify-content-center">
+        <br>
+        <ul class = "col-6">
+          <li>mmr: Maestria do jogador</li>
+        </ul>
+    </div>
+    
+    <br><hr><br>
+
+      <div class="row justify-content-center">
+          <div class="col-12 col-md-5 align-self-center">
+              <img class="img-fluid align-center" src="{% static 'img/grafico2_kayo.png'%}" alt="Grafico 1 kayo" draggable="false">
+          </div>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          Apesar de termos 5 categorias para análise veja que entre as 4 primeiras categorias
+           não há tanta discrepância entre os tempos de jogo, porém pessoas entre os rankings de 81~100
+            passam menos tempo jogando, isto é devido a diferença de habilidade entre esses e os outros grupos.
+            Com isso, uma provavel observação é que um conhecimento a mais de alguns players lhes permite que seu
+            jogos sejam mais efetivos e rápidos, lhes poupando mais tempo. Em contraste, neste mesmo dia estes podem
+            ter pego pessoas que são bem mais abaixo que seu nível e assim finalizaram a partida mais rapidamente.
+        </div>
+      </div>
+
+    <br><hr><br>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-5 align-self-center">
+          <img class="img-fluid align-center" src="{% static 'img/grafico3_kayo.png'%}" alt="Grafico 1 kayo" draggable="false">
+      </div>
+  </div>
+
+  <br>
+      <div class="row justify-content-center">
+        <div class="col-6">
+          Esta análise se configura por ser relivamente simples e direta. Veja que apesar de na plataforma ter-se
+          idades que variam entre 10 e 35 anos não há uma divergência muito grande entre o tempo média gasto entre
+          os conjuntos. Dessa forma, concluí-se que pessoas de variadas idades podem e tem se divertido com a plataforma.
+        </div>
+      </div>
+
+    <br><hr>
+
+    <div class="row justify-content-center">
+        <br>
+        <div class="col-6">
+            *obs: Os códigos dos gráficos estão em funções na view.
+        </div>
+    </div>
+
+</body>
+
+</html>

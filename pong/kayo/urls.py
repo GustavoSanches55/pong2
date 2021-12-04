@@ -6,5 +6,5 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 app_name = 'kayo'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.tabelas, name='index'),
 ]
