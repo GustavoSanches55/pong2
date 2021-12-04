@@ -11,7 +11,7 @@ logged=False
 # Create your views here.
 def index(request):
     global logged
-    return render(request,"menu/index.html",context={"logged":logged})
+    return render(request,"menu/index.html",context={"logged":str(logged)})
 
 def modos(request):
     return render(request,"menu/modos.html")
@@ -20,6 +20,10 @@ def leaderboards(request):
     return render(request,"menu/leaderboard.html")
 
 def login(request):
+    global logged
+    if(logged):
+        url = reverse("profile")
+        return HttpResponseRedirect(url)
     if(request.POST):
         print("ok")
         lembrar = request.POST["remember"]=="lembrar"
@@ -31,10 +35,8 @@ def login(request):
             user = False
         if user:
             if user.hash_senha == request.POST["inputPassword"]:
-                print("logado")
-                url = reverse("index")
-                global logged
                 logged = user
+                url = reverse("index")
                 return HttpResponseRedirect(url)
             else:
                 print("senha errada")
@@ -51,7 +53,34 @@ def modos_explicacao(request):
     return render(request,"menu/modos_explicacao.html")
 
 def profile(request):
-    return render(request,"menu/profile.html")
+    global logged
+    if(logged):
+        user = logged
+        db_values = Jogador.objects.all().values()
+        df_players = pd.DataFrame(db_values)
+        df_players = df_players[["nome","mmr","idade","email"]]
+
+        db_values  = Partida.objects.all().values()
+        df_matches = pd.DataFrame(db_values)
+        df_matches = df_matches[["p1","p2","score1","score2","tempo_s"]].rename(columns={"tempo_s":"tempo"})
+
+        df_matches,df_players = add_victory_columns(df_matches,df_players)
+        partidas_jogadas = df_players[df_players["nome"]==user.nome]["partidas-jogadas"]
+        partidas_jogadas = int(partidas_jogadas)
+        vitorias = df_players[df_players["nome"]==user.nome]["vitorias"]
+        vitorias = int(vitorias)
+
+        
+        
+        mydict = {
+            "nome": user.nome,
+            "partidas": partidas_jogadas,
+            "vitorias": vitorias
+        }
+        return render(request,"menu/profile.html", context=mydict)
+    else:
+        url = reverse("login")
+        return HttpResponseRedirect(url)
     
 def analises_menu(request):
     return render(request, "menu/analises_menu.html")
@@ -94,3 +123,26 @@ def salvar_csv(request):
         aaaa+= str(coisa.p1)+"<br>"
 
     return HttpResponse(str("EIEIEIEIEII: "+aaaa))
+
+def add_victory_columns(df_matches,df_players):
+    
+    df_players["vitorias"] = 0
+    df_players["partidas-jogadas"] = 0
+    for i in range(df_matches.shape[0]):
+        linha = df_matches.iloc[i]
+
+        p1 = linha["p1"].copy()
+        p2 = linha["p2"].copy()
+        if linha["score1"]>linha["score2"]:
+            n = df_players.loc[p1,"vitorias"].copy() + 1
+            df_players.loc[p1,"vitorias"] = n
+        elif linha["score2"]>linha["score1"]:
+            n = df_players.loc[p2,"vitorias"].copy() + 1
+            df_players.loc[p2,"vitorias"] = n
+        n = df_players.loc[p1,"partidas-jogadas"].copy() + 1
+        df_players.loc[p1,"partidas-jogadas"] = n
+
+        n = df_players.loc[p2,"partidas-jogadas"].copy() + 1
+        df_players.loc[p2,"partidas-jogadas"] = n
+
+    return df_matches,df_players
