@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    {% include 'menu/head.html'%}
+
+<body class="container-fluid">
+    <!--Barra de navegação para o voltar a página anterior + miniatura da logo-->
+    {% include 'menu/nav.html' with backLink='analises_menu' %}
+
+<hr>
+    <div class="row justify-content-center">
+        <h1>Analises feitas por Lucas Treuke:</h1>
+        <br>
+        <div class="col-6">
+            <h2>O quão frustrante o jogo pode ser para certos jogadores?</h2>
+            <p>O objetivo é analisar as quantias de derrotas e o tempo de jogo, para poder ter algum insight sobre essa pergunta.</p>
+        </div>
+    </div>
+
+    <br><hr><br>
+    
+    <div class="row justify-content-center">
+        <div class = "tabela-fit">
+        {{ df_derrotas|safe }}
+        </div>
+    </div>
+    <p>Encontramos então a seleção de jogadores que mais perderam, o lider deles é curiosamente o jogador que também tem o maior numero de partidas... E ele perdeu todas... Pobre Patata414.</p>
+    <img src="{% static dist_derrotas %}">
+
+</body>
+
+</html>

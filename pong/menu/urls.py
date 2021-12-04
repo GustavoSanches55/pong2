@@ -14,5 +14,7 @@ urlpatterns = [
     path("analises_menu", views.analises_menu, name="analises_menu"),
     path(r'sanches/', include('sanches.urls',  namespace='sanches')),
     path(r'kayo/', include('kayo.urls',  namespace='kayo')),
-    path(r'laguardia/', include('laguardia.urls',  namespace='laguardia'))
+    path(r'laguardia/', include('laguardia.urls',  namespace='laguardia')),
+    # path(r'treuke/', include('treuke.urls',  namespace='treuke'))
+    path(r'treuke/', include('treuke.urls'))
 ]
