@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    {% include 'menu/head.html'%}
+
+<body class="container-fluid">
+    {% include 'menu/nav.html' with backlink='menu/analises_menu' %}
+
+
+    <!-- Introdução -->
+    <div class="row justify-content-center">
+        <h1> ~ Análise Laguardia ~ </h1>
+        <br>
+        <h2><i> "Como o rank do jogador se correlaciona com outras variáveis?" </i></h2>
+        <br>
+        Cada integrante do grupo optou por focar suas análises em um assunto específico e, dessa forma,
+        eu centrei minha atenção para o Rank do jogador e suas possíveis correlações. Sendo assim,
+        um bom início é olharmos os dados que temos em mãos, como a tabela de jogadores e a tabela de partidas:
+        <br>
+    </div>
+    <div class="row justify-content-center">
+        <h3>Tabela de Jogadores</h3>
+            <div class = "tabela-fit">
+            {{ players|safe }}
+            </div>
+            <i>Tabela com os dados de cada jogador.</i>
+        <h3>Tabela de Partidas</h3>
+            <div class = "tabela-fit">
+            {{ matches|safe }}
+            </div>
+            <i>Tabela com os dados de cada partida, com um join na tabela de jogadores pelo player1 (será útil para as análises no futuro).</i>
+    <br><br>
+    É importante notar que esses dados foram gerados artificialmente utilizando Pandas e Numpy e, portanto, 
+    não representam necessariamente nenhum cenário real.
+    </div>
+
+
+    <!-- Gráfico 1 -->
+    <hr>
+    <div class="row justify-content-center">
+        <h1> Gráfico 1 - Histograma dos Ranks</h1>
+        <br>
+        Com esses dados em mãos, podemos começar o trabalho. Uma primeira análise de grande importância
+        é verificarmos a frequência da distribuição dos ranks dos jogadores. O gráfico a seguir nos revela
+        essa informação:
+        <br>
+        <img class="img-fluid align-center" src="{% static 'img/laguardia1.png'%}" alt="Histograma dos ranks" draggable="false">
+        {{ graf1|safe }}
+        <br>
+        O que observamos é que os ranks tem uma distribuição bem próxima da normal, com excessão dos pontos extremos.
+        Isso occore porque os dados de rank foram gerados usando a função do numpy de criação de uma distribuição normal, porém
+        quando o valor excedia 100 era definido em 100 e quando era inferior a 0, era definido 0. Logo, os valores 0 e 100
+        passaram a representar a soma das frequências de todos os números que extrapolavam o nosso escopo e, portanto,
+        apresentaram essas grandes quantidades de ocorrências.
+    </div>
+
+
+    <!-- Gráfico 2 -->
+    <hr>
+    <div class="row justify-content-center">
+        <h1> Gráfico 2 - Correlação Rank e Idade</h1>
+        <br>
+        Além disso, outra pergunta interessante é se a habilidade de um jogador (traduzida no Rank) tem alguma correlação
+        <br>
+        <img class="img-fluid align-center" src="{% static 'img/laguardia2.png'%}" alt="Scatter entre rank e idade" draggable="false">
+        {{ graf2|safe }}
+        <br>
+        O que observamos é que os ranks tem uma distribuição bem próxima da normal, com excessão dos pontos extremos.
+        Isso occore porque os dados de rank foram gerados usando a função do numpy de criação de uma distribuição normal, porém
+        quando o valor excedia 100 era definido em 100 e quando era inferior a 0, era definido 0. Logo, os valores 0 e 100
+        passaram a representar a soma das frequências de todos os números que extrapolavam o nosso escopo e, portanto,
+        apresentaram essas grandes quantidades de ocorrências.
+    </div>
+
+
+
+
+
+</body>
+
+</html>

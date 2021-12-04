@@ -1,32 +1,51 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render, reverse
+from django.http import HttpResponse, Http404
+from django.http.response import HttpResponseRedirect
+import pandas as pd
+from menu.models import Jogador, Partida
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 
 def index(request):
-    
-
-
-    mydict = {
-        "partidas": partidas.head(10).to_html(col_space=70,justify='center'),
-        "descricao": descricao.to_html(col_space=70,justify='center'),
-        "por_jogador": por_jogador.head(10).to_html(col_space=70,justify='center')
-    }
-    return render(request,"sanches/index.html", context=mydict)
-
-def analise():
     players = pd.DataFrame( Jogador.objects.all().values() )
     matches = pd.DataFrame( Partida.objects.all().values() )
 
-    players = players.rename(columns={"","index"})
+    players, matches, graf1, graf2, graf3, graf4 = analise(players, matches)
+
+    # filtragem dos dados relevantes pra ficar bonitinho no html
+    players = players[['nome', 'rank', 'idade', 'email', 'hash_senha']]
+    matches = matches[['p1', 'p2', 'score1', 'score2', 'rank', 'nome']]
+    matches = matches.sort_values(by='p1')
+    
+    mydict = {
+        "players": players.head(10).to_html(col_space=70,justify='center'),
+        "matches": matches.head(10).to_html(col_space=70,justify='center'),
+        "graf1": graf1,
+        "graf2": graf2,
+        "graf3": graf3,
+        "graf4": graf4,
+    }
+    return render(request,"laguardia/index.html", context=mydict)
+
+def analise(players, matches):
+
+    # Corrige a base pra deixar ela idêntica aos csvs
+    players.reset_index(inplace=True)
+    players = players.rename(columns = {"mmr":"rank"})
 
     matches = pd.merge(matches, players, left_on="p1", right_on="index")
 
-    matplotlib.style.use('dark_background')
-
+    # cria os gráficos
+    mpl.style.use('dark_background')
     graf1 = grafico1(players)
     graf2 = grafico2(matches)
     graf3 = grafico3(matches)
     graf4 = grafico4(players, matches)
+
+    return players, matches, graf1, graf2, graf3, graf4
 
 def grafico1(players):
     return players['rank'].hist(bins=30, color='#8603ff')
