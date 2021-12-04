@@ -52,4 +52,20 @@ $gradiente-azul: linear-gradient(to right, #0059ff, #5f00cc);
 #rank-image {
     width: 250px;
     height: 250px;
+    animation: rank_animation 3s ease-in infinite;
+}
+
+@keyframes rank_animation {
+    0%{
+        filter: brightness(1);
+        transform: scale(1);
+    }
+    50%{
+        filter: brightness(1.1);
+        transform: scale(1.02);
+    }
+    100%{
+        filter: brightness(1);
+        transform: scale(1);
+    }
 }
