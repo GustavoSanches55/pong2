@@ -56,6 +56,10 @@ body.body-center {
   cursor: wait !important;
 }
 
+.img-plot {
+  max-width: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 20px;
 }
@@ -175,6 +179,26 @@ body.body-center {
 .alert-bt:active {
   -webkit-box-shadow: rgba(255, 0, 0, 0.5) -0.3em 0.3em 2em;
           box-shadow: rgba(255, 0, 0, 0.5) -0.3em 0.3em 2em;
+}
+
+.green-bt {
+  background-image: -webkit-gradient(linear, left top, right top, from(white), color-stop(#c4ffdd), color-stop(#00bb6d), to(#129094));
+  background-image: linear-gradient(to right, white, #c4ffdd, #00bb6d, #129094);
+}
+
+.green-bt:hover {
+  -webkit-box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em 0.8em;
+          box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em 0.8em;
+}
+
+.green-bt:hover .icon-bt {
+  -webkit-filter: brightness(11%);
+          filter: brightness(11%);
+}
+
+.green-bt:active {
+  -webkit-box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em 2em;
+          box-shadow: rgba(0, 255, 128, 0.5) -0.3em 0.3em 2em;
 }
 
 .icon-bt {
