@@ -1,6 +1,6 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,django
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,django
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,django 
 
 ### Django ###
 *.log

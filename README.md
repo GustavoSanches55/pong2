@@ -1,4 +1,6 @@
 # pong2
 Creating a pong game using django
 
-POOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG
+ * Simple dynamic login system
+ * Dynamic Leaderboards
+ * Lots of cool things 😎
